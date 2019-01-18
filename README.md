@@ -1,3 +1,5 @@
+Linkki herokuun: https://kaapelikartta.herokuapp.com/
+
 Kaapelikartta -sovelluksen tavoite on ylläpitää tietokantaa Helsingin Kaupungin
 Liikennevalojenohjauksen verkosta ja tarjota helppokäyttöinen graafinen
 käyttöliittymä tietokannassa olevan datan selaamiseen.
