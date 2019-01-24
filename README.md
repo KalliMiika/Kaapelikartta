@@ -32,6 +32,7 @@ Toimintoja:
 	Muutoslogin katselu
 
 Linkkejä:
+
 	Tietokantakaavio: https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio.jpg
 	Kaapelikartta sovelluksen elementtejä havainnollistavia paint piirroksia:
 		Kaapeli: https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Kaapeli.png
