@@ -35,6 +35,6 @@ Linkkejä:
 
 	Tietokantakaavio: https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio.jpg
 	Kaapelikartta sovelluksen elementtejä havainnollistavia paint piirroksia:
-		Kaapeli: https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Kaapeli.png
-		Säie: https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/S%C3%A4ie.png
-		Ristikytkentä: https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Ristikytkent%C3%A4.png
+	Kaapeli: https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Kaapeli.png
+	Säie: https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/S%C3%A4ie.png
+	Ristikytkentä: https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Ristikytkent%C3%A4.png
