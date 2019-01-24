@@ -2,17 +2,17 @@
 
 ## Linkki herokuun: https://kaapelikartta.herokuapp.com/
 
-### Kaapelikartta -sovelluksen tavoite on ylläpitää tietokantaa Helsingin Kaupungin
-### Liikennevalojenohjauksen verkosta ja tarjota helppokäyttöinen graafinen
-### käyttöliittymä tietokannassa olevan datan selaamiseen.
-### Käytännössä siis ylläpidetään tietoa Liikennevalojenohjauskojuista ja niiden sijainneista.
-### Kojujen välillä menevistä Kaapeleista ja kaapeleiden sisällä olevien säikeiden datasta.
-### Tavoite olisi luoda jonkinnäköinen karttanäkymä johon kojut ja kaapelit voitaisiin piirtää
-### ja näitä klikkaamalla saataisiin esille tarkempaa tietoa.
-### Ohjelman käyttäminen tulee vaatimaan kirjautumisen ja kaikki muutokset logataan ja niihin
-### liitetään käyttäjän nimi ja päivämäärä.
+Kaapelikartta -sovelluksen tavoite on ylläpitää tietokantaa Helsingin Kaupungin
+Liikennevalojenohjauksen verkosta ja tarjota helppokäyttöinen graafinen
+käyttöliittymä tietokannassa olevan datan selaamiseen.
+Käytännössä siis ylläpidetään tietoa Liikennevalojenohjauskojuista ja niiden sijainneista.
+Kojujen välillä menevistä Kaapeleista ja kaapeleiden sisällä olevien säikeiden datasta.
+Tavoite olisi luoda jonkinnäköinen karttanäkymä johon kojut ja kaapelit voitaisiin piirtää
+ja näitä klikkaamalla saataisiin esille tarkempaa tietoa.
+Ohjelman käyttäminen tulee vaatimaan kirjautumisen ja kaikki muutokset logataan ja niihin
+liitetään käyttäjän nimi ja päivämäärä.
 	
-Toimintoja:
+#### Toimintoja:
 
 	Kirjautuminen
 	Risteyskojujen lisäys, muokkaus ja poisto
