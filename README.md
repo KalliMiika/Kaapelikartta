@@ -1,6 +1,6 @@
 # Kaapelikartta
 
-## Linkki herokuun: https://kaapelikartta.herokuapp.com/
+## [Linkki herokuun](https://kaapelikartta.herokuapp.com/)
 
 <dl>
 	<dd>
