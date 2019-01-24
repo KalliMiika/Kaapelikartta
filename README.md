@@ -12,7 +12,7 @@ ja näitä klikkaamalla saataisiin esille tarkempaa tietoa.
 Ohjelman käyttäminen tulee vaatimaan kirjautumisen ja kaikki muutokset logataan ja niihin
 liitetään käyttäjän nimi ja päivämäärä.
 	
-#### Toimintoja:
+### Toimintoja:
 <dl>
 	<dt>Kirjautuminen</dt>
 	<dt>Risteyskojujen lisäys, muokkaus ja poisto</dt>
