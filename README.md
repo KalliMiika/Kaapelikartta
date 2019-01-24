@@ -32,9 +32,8 @@ liitetään käyttäjän nimi ja päivämäärä.
 		kautta se kulkee ja mitä kaapeleita pitkin ja missä säikeessä se kulkee minkäkin kaapelin
 		sisällä)
 	Muutoslogin katselu
-<dl>
-	<dt>Linkkejä:</dt>
-</dl>
+	
+## Linkkejä
 
 * [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio.jpg)
 <dl>
