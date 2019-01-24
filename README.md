@@ -37,7 +37,7 @@ liitetään käyttäjän nimi ja päivämäärä.
 
 * [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio.jpg)
 <dl>
-	<dt>Kaapelikartta sovelluksen elementtejä havainnollistavia paint piirroksia</dt>
+	<dt>Kaapelikartta -sovelluksen elementtejä havainnollistavia paint piirroksia</dt>
 </dl>
 
  * [Kaapeli](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Kaapeli.png)
