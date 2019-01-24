@@ -13,25 +13,26 @@ Ohjelman käyttäminen tulee vaatimaan kirjautumisen ja kaikki muutokset logataa
 liitetään käyttäjän nimi ja päivämäärä.
 	
 #### Toimintoja:
-
-	Kirjautuminen
-	Risteyskojujen lisäys, muokkaus ja poisto
-	Kaapeleiden lisäys, muokkaus ja poisto
-		(Ajatus olisi että kaapelia luodessa määritetään sen sisällä kulkevien
+<dl>
+	<dt>Kirjautuminen</dt>
+	<dt>Risteyskojujen lisäys, muokkaus ja poisto</dt>
+	<dt>Kaapeleiden lisäys, muokkaus ja poisto</dt>
+		<dd>(Ajatus olisi että kaapelia luodessa määritetään sen sisällä kulkevien
 		säikeiden lukumäärä, jotai ei voida muokata enään jälkikäteen ja tämän
-		lukumäärän pohjalta luotaisiin sopiva määrä uusia säikeitä)
-	Säikeiden muokkaus (Ei manuaalista lisäystä tai poistoa)
-	Risteyskojujen katselu
-		(Näyttää että mihin kaapelista A tulevat säikeet on kytketty kaapin sisällä,
-		ja mihin säikeeseen ne jatkavat kaapelissa B poistuessaan kaapista.)
-	Kaapeleiden katselu
-		(Näyttää kaikki kaapelin sisällä kulkevat säikeet, ja mitä dataa niiden on tarkoitus
-		kuljettaa)
-	Tietyn reitin katselu (säikeiden "data" kenttä)
-		(Hakusanalla voidaan näyttää tietty ohjausreitti, mistä data lähtee, minkä risteyskojujen
+		lukumäärän pohjalta luotaisiin sopiva määrä uusia säikeitä)</dd>
+	<dt>Säikeiden muokkaus (Ei manuaalista lisäystä tai poistoa)</dt>
+	<dt>Risteyskojujen katselu</dt>
+		<dd>(Näyttää että mihin kaapelista A tulevat säikeet on kytketty kaapin sisällä,
+		ja mihin säikeeseen ne jatkavat kaapelissa B poistuessaan kaapista.)</dd>
+	<dt>Kaapeleiden katselu</dt>
+		<dd>(Näyttää kaikki kaapelin sisällä kulkevat säikeet, ja mitä dataa niiden on tarkoitus
+		kuljettaa)</dd>
+	<dt>Tietyn reitin katselu (säikeiden "data" kenttä)</dt>
+		<dd>(Hakusanalla voidaan näyttää tietty ohjausreitti, mistä data lähtee, minkä risteyskojujen
 		kautta se kulkee ja mitä kaapeleita pitkin ja missä säikeessä se kulkee minkäkin kaapelin
-		sisällä)
-	Muutoslogin katselu
+			sisällä)</dd>
+	<dt>Muutoslogin katselu</dt>
+</dl>
 	
 ## Linkkejä
 
