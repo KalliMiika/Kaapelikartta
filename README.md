@@ -22,13 +22,13 @@
 
 <dl>
 	<dt>
-*		Kirjautuminen
+		- Kirjautuminen
 	</dt>
 	<dt>
-*		Risteyskojujen lisäys, muokkaus ja poisto
+		- Risteyskojujen lisäys, muokkaus ja poisto
 	</dt>
 	<dt>
-*		Kaapeleiden lisäys, muokkaus ja poisto
+		- Kaapeleiden lisäys, muokkaus ja poisto
 	</dt>
 	<dd>
 		(Ajatus olisi että kaapelia luodessa määritetään sen sisällä kulkevien
@@ -36,24 +36,24 @@
 		lukumäärän pohjalta luotaisiin sopiva määrä uusia säikeitä)
 	</dd>
 	<dt>
-*		Säikeiden muokkaus (Ei manuaalista lisäystä tai poistoa)
+		- Säikeiden muokkaus (Ei manuaalista lisäystä tai poistoa)
 	</dt>
 	<dt>
-*		Risteyskojujen katselu
+		- Risteyskojujen katselu
 	</dt>
 	<dd>
 		(Näyttää että mihin kaapelista A tulevat säikeet on kytketty kaapin sisällä,
 		ja mihin säikeeseen ne jatkavat kaapelissa B poistuessaan kaapista.)
 	</dd>
 	<dt>
-*		Kaapeleiden katselu
+		- Kaapeleiden katselu
 	</dt>
 	<dd>
 		(Näyttää kaikki kaapelin sisällä kulkevat säikeet, ja mitä dataa niiden on tarkoitus
 		kuljettaa)
 	</dd>
 	<dt>
-*		Tietyn reitin katselu (säikeiden "data" kenttä)
+		- Tietyn reitin katselu (säikeiden "data" kenttä)
 	</dt>
 	<dd>
 		(Hakusanalla voidaan näyttää tietty ohjausreitti, mistä data lähtee, minkä risteyskojujen
@@ -61,7 +61,7 @@
 		sisällä)
 	</dd>
 	<dt>
-*		Muutoslogin katselu
+		- Muutoslogin katselu
 	</dt>
 </dl>
 	
