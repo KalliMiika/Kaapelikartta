@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Controller</th>
+      <th>Note</th>
+      <th>X</th>
+      <th>Y</th>
+    </tr>
+    {% for controller in controllers %}
+    <tr>
+      <td>{{ controller.name }}</td>
+      <td>{{ controller.note }}</td>
+      <td>{{ controller.x }}</td>
+      <td>{{ controller.y }}</td>
+      <td>
+        <form method="GET" action="{{ url_for('controllers_view_one', controller_id=controller.id) }}">
+          <input type="submit" value="Edit"/>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+    
+  <ul>
+    <li><a href="{{ url_for('controllers_form') }}">Add a controller</a></li>
+  </ul>
+{% endblock %}

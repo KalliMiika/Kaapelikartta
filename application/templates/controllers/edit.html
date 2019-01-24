@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('controllers_edit_one', controller_id=controller.id) }}">
+  <input type="text" name="name" value="{{ controller.name }}"/>
+  <input type="text" name="note" value="{{ controller.note }}"/>
+  <input type="text" name="x" value="{{ controller.x }}"/>
+  <input type="text" name="y" value="{{ controller.y }}"/>
+  <input type="submit" value="Edit this controller"/>
+</form>
+{% endblock %}

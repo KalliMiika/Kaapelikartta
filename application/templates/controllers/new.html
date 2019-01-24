@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('controllers_create') }}">
+  <input type="text" name="name"/>
+  <input type="text" name="note"/>
+  <input type="text" name="x"/>
+  <input type="text" name="y"/>
+  <input type="submit" value="Add a new controller"/>
+</form>
+{% endblock %}
