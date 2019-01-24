@@ -32,10 +32,15 @@ liitetään käyttäjän nimi ja päivämäärä.
 		kautta se kulkee ja mitä kaapeleita pitkin ja missä säikeessä se kulkee minkäkin kaapelin
 		sisällä)
 	Muutoslogin katselu
+<dl>
+	<dt>Linkkejä:</dt>
+</dl>
 
-Linkkejä:
-[Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio.jpg)
-Kaapelikartta sovelluksen elementtejä havainnollistavia paint piirroksia:
-[Kaapeli](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Kaapeli.png)
-[Säie](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/S%C3%A4ie.png)
-[Ristikytkentä](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Ristikytkent%C3%A4.png)
+* [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio.jpg)
+<dl>
+	<dt>Kaapelikartta sovelluksen elementtejä havainnollistavia paint piirroksia</dt>
+</dl>
+
+ * [Kaapeli](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Kaapeli.png)
+ * [Säie](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/S%C3%A4ie.png)
+ * [Ristikytkentä](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Ristikytkent%C3%A4.png)
