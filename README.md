@@ -69,7 +69,8 @@
 	
 ## Linkkejä
 
-* [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio.jpg)
+* [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio2.jpg)
+* [Tietokantakaavio ilman muutoslogia](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio.jpg)
 
 <dl>
 	<dt>User Stories</dt>
