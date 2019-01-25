@@ -70,6 +70,19 @@
 ## Linkkejä
 
 * [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio.jpg)
+
+<dl>
+	<dt>User Stories</dt>
+</dl>
+
+* [Kaapelikartta](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Kaapelikartta.md)
+* [Risteyskoje](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Controller.md)
+* [Kaapeli](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Cable.md)
+* [Säie](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Thread.md)
+* [Ristikytkentä](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Cross-connection.md)
+* [Käyttäjät](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Users.md)
+* [Muutoslogi](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Changelog.md)
+
 <dl>
 	<dt>Kaapelikartta -sovelluksen elementtejä havainnollistavia paint piirroksia</dt>
 </dl>
