@@ -69,25 +69,25 @@
 	
 ## Linkkejä
 
-* [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio.jpg)
-* [Tietokantakaavio ilman muutoslogia](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Tietokantakaavio2.jpg)
+* [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Tietokantakaavio.jpg)
+* [Tietokantakaavio ilman muutoslogia](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Tietokantakaavio2.jpg)
 
 <dl>
 	<dt>User Stories</dt>
 </dl>
 
-* [Kaapelikartta](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Kaapelikartta.md)
-* [Risteyskoje](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Controller.md)
-* [Kaapeli](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Cable.md)
-* [Säie](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Thread.md)
-* [Ristikytkentä](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Cross-connection.md)
-* [Käyttäjät](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Users.md)
-* [Muutoslogi](https://github.com/KalliMiika/Kaapelikartta/blob/master/Dokumentaatio/Changelog.md)
+* [Kaapelikartta](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/Kaapelikartta.md)
+* [Risteyskoje](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/Controller.md)
+* [Kaapeli](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/Cable.md)
+* [Säie](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/Thread.md)
+* [Ristikytkentä](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/Cross-connection.md)
+* [Käyttäjät](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/Users.md)
+* [Muutoslogi](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/Changelog.md)
 
 <dl>
 	<dt>Kaapelikartta -sovelluksen elementtejä havainnollistavia paint piirroksia</dt>
 </dl>
 
- * [Kaapeli](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Cable.png)
- * [Säie](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Thread.png)
- * [Ristikytkentä](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/Dokumentaatio/Cross-connection.png)
+ * [Kaapeli](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Cable.png)
+ * [Säie](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Thread.png)
+ * [Ristikytkentä](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Cross-connection.png)
