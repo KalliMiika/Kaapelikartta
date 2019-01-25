@@ -7,9 +7,9 @@
 		Kaapelikartta -sovelluksen tavoite on ylläpitää tietokantaa Helsingin Kaupungin
 		Liikennevalojenohjauksen verkosta ja tarjota helppokäyttöinen graafinen
 		käyttöliittymä tietokannassa olevan datan selaamiseen.
-		Käytännössä siis ylläpidetään tietoa Liikennevalojenohjauskojuista ja niiden sijainneista.
-		Kojujen välillä menevistä Kaapeleista ja kaapeleiden sisällä olevien säikeiden datasta.
-		Tavoite olisi luoda jonkinnäköinen karttanäkymä johon kojut ja kaapelit voitaisiin piirtää
+		Käytännössä siis ylläpidetään tietoa Liikennevalojenohjauskojeista ja niiden sijainneista.
+		Kojeiden välillä menevistä Kaapeleista ja kaapeleiden sisällä olevien säikeiden datasta.
+		Tavoite olisi luoda jonkinnäköinen karttanäkymä johon kojeet ja kaapelit voitaisiin piirtää
 		ja näitä klikkaamalla saataisiin esille tarkempaa tietoa.
 		Ohjelman käyttäminen tulee vaatimaan kirjautumisen ja kaikki muutokset logataan ja niihin
 		liitetään käyttäjän nimi ja päivämäärä.
@@ -25,7 +25,7 @@
 		- Kirjautuminen
 	</dt>
 	<dt>
-		- Risteyskojujen lisäys, muokkaus ja poisto
+		- Risteyskojeiden lisäys, muokkaus ja poisto
 	</dt>
 	<dt>
 		- Kaapeleiden lisäys, muokkaus ja poisto
@@ -39,10 +39,10 @@
 		- Säikeiden muokkaus (Ei manuaalista lisäystä tai poistoa)
 	</dt>
 	<dt>
-		- Risteyskojujen katselu
+		- Risteyskeiden katselu
 	</dt>
 	<dd>
-		(Näyttää että mihin kaapelista A tulevat säikeet on kytketty kaapin sisällä,
+		(Näyttää että mihin kaapelista A tulevat säikeet on kytketty Risteyskojeen sisällä,
 		ja mihin säikeeseen ne jatkavat kaapelissa B poistuessaan kaapista.)
 	</dd>
 	<dt>
@@ -56,7 +56,7 @@
 		- Tietyn reitin katselu (säikeiden "data" kenttä)
 	</dt>
 	<dd>
-		(Hakusanalla voidaan näyttää tietty ohjausreitti, mistä data lähtee, minkä risteyskojujen
+		(Hakusanalla voidaan näyttää tietty ohjausreitti, mistä data lähtee, minkä risteyskojeiden
 		kautta se kulkee ja mitä kaapeleita pitkin ja missä säikeessä se kulkee minkäkin kaapelin
 		sisällä)
 	</dd>
