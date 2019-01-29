@@ -18,6 +18,7 @@
     <!-- Muutoin näytetään käyttäjälle login -nappi -->
   {% else %}
     <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+    <a href="{{ url_for('auth_register') }}">Rekisteröidy</a>
   {% endif %}
 
   <ul>

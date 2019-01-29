@@ -116,6 +116,7 @@ dmypy.json
 
 #tietokanta
 kaapelikartta.db
+opendb.bat
 
 #activate & deactivate shortcuts
 activate.bat

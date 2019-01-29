@@ -1,13 +1,13 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 
-from application import app
+from application import app, db
 from application.auth.models import User
-from application.auth.forms import LoginForm
+from application.auth.forms import LoginForm, RegisterForm
 
 #Kuunnellaan osoitteeseen /auth/login tulevia GET- ja POST-pyyntöjä
 #   GET-pyynnöille palautetaan auth/loginform.html sisäänkirjautumissivu, 
-#parametriksi annetaan auth/forms.py määrittelemät elementit
+#parametriksi annetaan auth/forms.py LoginForm määrittelemät elementit
 #   Post-pyynnöistä kerätään talteen auth/forms.py määrittelemän
 #LoginForm olion sisältämät käyttäjätiedot, joiden perusteella
 #etsitään auth/models.py määritelty käyttäjätili tietokannasta ja 
@@ -19,6 +19,7 @@ def auth_login():
         return render_template("auth/loginform.html", form = LoginForm())
 
     form = LoginForm(request.form)
+
     # mahdolliset validoinnit
 
     user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
@@ -41,3 +42,42 @@ def auth_logout():
     logout_user()
 
     return redirect(url_for("index"))
+
+#Kuunnellaan osoitteeseen /auth/register tulevia GET- ja POST -pyyntöjä
+#   Get-Pyynnöille palautetaan auth/new.html rekisteröintilomake
+#parametriksi annetaan RegisterForm
+#   Post-Pyynnöistä kerätään talteen auth/forms.py määrittelemän
+#RegisterForm olion sisältämät käyttäjätiedot, joiden perusteella
+#Luodaan uusi käyttäjä tietokantaan ja kirjataan käyttäjä sisään. 
+#Mikäli rekisteröinnissä tapahtuu virhe, (esim käyttäjänimi on jo 
+#käytössä) uudelleenohjataan käyttäjä osoitteeseen /auth/register
+@app.route("/auth/register", methods=["GET", "POST"])
+def auth_register():
+    if request.method == "GET":
+        return render_template("auth/new.html", form = RegisterForm())
+
+    form = RegisterForm(request.form)
+
+    #Validoidaan RegisterFormin sisältämien kenttien datat, jos
+    #niissä on häikkää, palautetaan auth/new.html sivu
+    #virheviestin kera
+    if not form.validate():
+        return render_template("auth/new.html", form = form)
+    #Validoidaan uniikki käyttäjätunnus, jos käyttäjätunnus on
+    #käytössä, palautetaan auth/new.html sivu virheviestin kera
+    if not form.validateUsername():
+        return render_template("auth/new.html", form = form)
+
+
+    #Luodaan uusi käyttäjä LoginFormista kerätyn datan perusteella
+    #default käyttäjätaso on peruskäyttäjä "user"
+    u = User(form.name.data, form.username.data, form.password.data, "user")
+    
+    db.session().add(u)
+    db.session().commit()
+
+    #Käyttäjä kirjataan sisään flask_login:n 
+    #tarjoamalla login_user metodilla
+    login_user(u)
+    
+    return redirect(url_for("controllers_index"))
