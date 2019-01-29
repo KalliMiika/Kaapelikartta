@@ -1,6 +1,9 @@
 # Kaapelikartta
 
 ## [Linkki herokuun](https://kaapelikartta.herokuapp.com/)
+	Testitunnukset: 
+		Käyttäjänimi: testi1
+		Salasana: testi2
 
 <dl>
 	<dd>
