@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Kaapelikartta</title>
-  </head>
 
-  <body>
-    <ul>
-      <li><a href="{{ url_for('controllers_index') }}">List controllers</a></li>
-    </ul>
-    {% block body %}
-      <p>
-        Content.
-      </p>
-    {% endblock %}
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Kaapelikartta</title>
+</head>
+
+<body>
+  <!-- 
+    Jos käyttäjä on kirjautunut, näytetään käyttäjälle 
+    määritetty nimi ja logout -nappi 
+  -->
+  {% if current_user.is_authenticated %}
+    <p>
+      Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+    </p>
+    <!-- Muutoin näytetään käyttäjälle login -nappi -->
+  {% else %}
+    <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+  {% endif %}
+
+  <ul>
+    <li><a href="{{ url_for('controllers_index') }}">List controllers</a></li>
+  </ul>
+
+  {% block body %}
+  <p>
+    Content.
+  </p>
+  {% endblock %}
+</body>
+
 </html>
