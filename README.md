@@ -1,10 +1,5 @@
 # Kaapelikartta
 
-## [Linkki herokuun](https://kaapelikartta.herokuapp.com/)
-	Testitunnukset: 
-		Käyttäjänimi: testi1
-		Salasana: testi2
-
 <dl>
 	<dd>
 		Kaapelikartta -sovelluksen tavoite on ylläpitää tietokantaa Helsingin Kaupungin
@@ -71,6 +66,11 @@
 ***
 	
 ## Linkkejä
+
+#### [Linkki herokuun](https://kaapelikartta.herokuapp.com/)
+	Testitunnukset: 
+		Käyttäjänimi: testi1
+		Salasana: testi2
 
 * [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Tietokantakaavio.jpg)
 * [Tietokantakaavio ilman muutoslogia](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Tietokantakaavio2.jpg)
