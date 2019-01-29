@@ -67,10 +67,18 @@
 	
 ## Linkkejä
 
+<dl>
+	<dt>HEROKU</dt>
+</dl>
+
 #### [Linkki herokuun](https://kaapelikartta.herokuapp.com/)
 	Testitunnukset: 
 		Käyttäjänimi: testi1
 		Salasana: testi2
+
+<dl>
+	<dt>Tietokanta</dt>
+</dl>
 
 * [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Tietokantakaavio.jpg)
 * [Tietokantakaavio ilman muutoslogia](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Tietokantakaavio2.jpg)
