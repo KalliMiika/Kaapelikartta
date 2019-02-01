@@ -78,3 +78,11 @@ def controllers_create():
     db.session().commit()
     
     return redirect(url_for("controllers_index"))
+
+@app.route("/controllers/<controller_id>/delete/", methods=["POST"])
+@login_required
+def controllers_delete(controller_id):
+    Controller.query.filter_by(id=controller_id).delete()
+    db.session().commit()
+    
+    return redirect(url_for("controllers_index"))
