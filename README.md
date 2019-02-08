@@ -15,7 +15,68 @@
 </dl>
 	
 ***
-	
+
+### Käyttöohje: (Vain tähän mennessä toteutetuille toiminnallisuuksille)
+
+<dl>
+	<dt>
+		Ohjausreittien katselmointi
+	</dt>
+	<dd>
+		Ohjausreitit listataan yläpalkin "List routes" linkin kautta. Tietyn reitin tarkempi katselmointi tapahtuu
+		edellä mainitun listauksen yhteydessä olevista view-nappuloista.
+	</dd>
+	<dt>
+		Ohjausreittien lisäys
+	</dt>
+	<dd>
+		Ohjausreitit "lisätään" epäsuorasti. Käyttäjä voi merkata säikeiden data kenttään mitä informaatiota säikeen sisällä
+		kulkee, jonka perusteella selvitetään että mitä reittiä kyseinen informaatio kulkee kaapelikartassa, mitä kaapeleita
+		pitkin ja minkä risteyskojeiden kautta.
+	</dd>
+	<dt>
+		Tietokohteiden katselmointi
+	</dt>
+	<dd>
+		Risteyskojeiden ja Kaapeleiden listaukseen löytyy linkit yläpalkista. Yksittäisiä kaapeleita pääsee katselemaan
+		kaapelien listauksesta löytyvien view-nappuloiden kautta. Säikeet listataan kaapelikohtaisesti yksittäisen kaapelin 
+		katselmoinnin yhteydessä.
+	</dd>
+	<dt>
+		Tietokohteiden lisäys
+	</dt>
+	<dd>
+		Risteyskojeiden (Controller) ja Kaapeleiden (Cable) listauksien takaa löytyy
+		linkit kojeiden ja kaapeleiden lisäys lomakkeisiin.
+		Risteyskojeille annetaan nimi ja x- ja y- koordinaatit.
+	</dd>	
+	<dd>
+		Kaapeleille annetaan nimi, alku- ja loppupäässä olevat risteyskojeet
+		sekä kaapelin tyyppi, joka määrittää sisällä kulkevien säikeiden lukumäärän.
+		Säikeet luodaan automaattisesti kaapelin luonnin yhteydessä, määrä riippuu
+		kaapelin tyypistä.
+	</dd>	
+	<dt>
+		Tietokohteiden muokkaus
+	</dt>
+	<dd>
+		Risteyskojeiden muokkaus tapahtuu niiden listauksesta löytyvän Edit-nappulan kautta.
+		Kaikkia risteyskojeille asetettuja arvoja voidaan muokata jälkikäteen.
+	</dd>
+	<dd>
+		Kaapeleiden muokkaus tapahtuu niiden listauksesta löytyvän Edit-nappulan kautta.
+		Kaikkia muita kaapelille asetettuja arvoja voidaan muokata jälkikäteen paitsi kaapelin
+		tyyppiä.
+	</dd>
+	<dd>
+		Säiden muokkaus tapahtuu kaapelikohtaisesti. Tietyn kaapelin säikeitä pääsee muokkaamaan
+		menemällä kaapelien listaukseen ja painamalla view-nappia oikean kaapelin kohalta.
+		Seuraavasta kaapeli näkymästä voi sitten valita haluamasta säikeen ja avata muokkauslomakkeen
+		painamalla Edit-nappia. Kaikkia säikeiden arvoja paitsi sitä kaapelia minkä sisällä se menee
+		voidaan muokata jälkikäteen.
+	</dd>
+</dl>
+
 ### Toimintoja:
 
 <dl>
