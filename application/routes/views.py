@@ -3,7 +3,6 @@ from flask_login import login_required
 
 from application import app, db
 from application.threads.models import Thread
-from application.cables.models import Cable
 
 #Kuunnellaan osoitteeseen /routes tulevia GET-Pyyntöjä
 #Palautetaan routes/list.html näkymä, 
@@ -16,6 +15,6 @@ def routes_index():
 #
 @app.route("/routes/<route>/", methods=["GET"])
 def routes_view_one(route):
-    route = Thread.get_route(route)
-    return render_template("routes/view.html", route = route)
+    r = Thread.get_route(route)
+    return render_template("routes/view.html", route = r)
 

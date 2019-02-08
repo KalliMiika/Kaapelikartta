@@ -39,15 +39,29 @@ class Thread(db.Model):
         res = db.engine.execute(stmt)
         result = []
         for row in res:
-            result.append(row[0])
+            result.append({"name":row[0], "length":Thread.route_length(row[0])})
         return result
+
+    @staticmethod
+    def route_length(route):
+        stmt = text("SELECT COUNT(DISTINCT Controller.id) FROM Controller, Cable, Thread"
+                    " WHERE Thread.data = :route AND Thread.cable_id = Cable.id AND"
+                    " (Cable.controller_a_id = Controller.id OR Cable.controller_b_id = Controller.id)").params(route=route)
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row[0])
+        return result[0]
 
     #Saa parametriksi merkkijonon route jonka perusteella etsitään se reitti 
     #jota pitkin tietty data liikkuu kaapeliverkostossa.
     #palautetaan lista joka sisältää askeleen verkossa / rivi
     @staticmethod
     def get_route(route):
-        stmt = text("select controller.name, cable.name, thread.socket_a, thread.socket_b from controller inner join cable on (cable.controller_a_id = controller.id or cable.controller_b_id = controller.id) inner join thread on thread.cable_id = cable.id and thread.data = :route").params(route=route)
+        stmt = text("select controller.name, cable.name, thread.socket_a, thread.socket_b"
+                    " from controller inner join cable on (cable.controller_a_id = controller.id"
+                    " or cable.controller_b_id = controller.id) inner join thread on"
+                    " thread.cable_id = cable.id and thread.data = :route").params(route=route)
         res = db.engine.execute(stmt)
         result = []
         tmp = []
