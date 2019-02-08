@@ -141,6 +141,7 @@
 	<dt>Tietokanta</dt>
 </dl>
 
+* [Tietorakenteet sanallisesti](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/Tietokanta.md)
 * [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Tietokantakaavio.jpg)
 * [Tietokantakaavio ilman muutoslogia](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Tietokantakaavio2.jpg)
 
