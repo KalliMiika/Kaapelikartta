@@ -7,7 +7,7 @@ from application.controllers.forms import ControllerForm
 
 #Kuunnellaan osoitteeseen /controllers tulevia GET-Pyyntöjä
 #Palautetaan controllers/list.html näkymä, 
-# jolle annetaan "Select * from Controller"-kyselyn tulos
+#jolle annetaan "Select * from Controller"-kyselyn tulos
 @app.route("/controllers", methods=["GET"])
 def controllers_index():
     return render_template("controllers/list.html", controllers = Controller.query.all())
@@ -23,7 +23,7 @@ def controllers_form():
 
 #Kuunnellaan osoitteeseen /controllers/<controller_id> tulevia GET-Pyyntöjä
 #Palautetaan <controller_id>:n määrittelemää risteyskojetta vastaava
-# controllers/edit.html sivu, parametriksi annetaan
+#controllers/edit.html sivu, parametriksi annetaan
 #controllers/forms.py määrittelemät elementit
 @app.route("/controllers/<controller_id>/", methods=["GET"])
 @login_required
@@ -32,9 +32,9 @@ def controllers_view_one(controller_id):
 
 #Kuunnellaan osoitteeseen /controllers/<controller_id> tulevia POST-Pyyntöjä
 #Etsitään <controller_id>:tä vastaava risteyskoju tietokannasta ja
-# päivitetään sen tiedot POST-Pyynnön mukana tulleilla syötteillä.
+#päivitetään sen tiedot POST-Pyynnön mukana tulleilla syötteillä.
 #Päivitetään lopuksi muunneltu risteyskoje tietokantaan ja
-# uudelleenohjataan käyttäjä osoitteeseen /controllers
+#uudelleenohjataan käyttäjä osoitteeseen /controllers
 @app.route("/controllers/<controller_id>/", methods=["POST"])
 @login_required
 def controllers_edit_one(controller_id):
@@ -60,7 +60,7 @@ def controllers_edit_one(controller_id):
 #Kuunnellaan osoitteeseen /controllers/ tulevia POST-Pyyntöjä
 #Syötteestä kerätään risteyskojeelle nimi, viesti, x ja y koordinaatit
 #ja lisätään se lopuksi tietokantaan  ja uudelleenohjataan 
-# käyttäjä osoitteeseen /controllers
+#käyttäjä osoitteeseen /controllers
 @app.route("/controllers/", methods=["POST"])
 @login_required
 def controllers_create():

@@ -24,10 +24,10 @@ class CableForm(FlaskForm):
     ('10x4', '10x4'), ('5x4', '5x4'), 
     ('50x2', '50x2'), ('20x2', '20x2'), ('10x2', '10x2')]
 
-    def validate2(self):
+    def validate2(self, edit):
         #Tarkistetaan että kaapelin nimi on uniikki
         c = Cable.query.filter_by(name = self.name.data).first()
-        if not c is None:
+        if not edit and not c is None:
             self.name.errors.append('Cable name already in use')
             return False
         #Tarkistetaan että kaapeli on molemmista päistä kiinni

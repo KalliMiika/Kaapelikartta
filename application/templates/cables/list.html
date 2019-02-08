@@ -20,6 +20,11 @@
       <td>{{ cable.controller_a_name }}</td>
       <td>{{ cable.controller_b_name }}</td>
       <td>{{ cable.cable.size }}</td>
+      <td>
+        <form method="GET" action="{{ url_for('cables_view_one', cable_id=cable.cable.id) }}">
+          <input type="submit" value="Edit"/>
+        </form>
+      </td>
     </tr>
     {% endfor %}
   </table>
