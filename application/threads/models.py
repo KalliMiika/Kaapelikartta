@@ -1,4 +1,5 @@
 from application import db
+from sqlalchemy.sql import text
 
 #Säikeen models.py
 class Thread(db.Model):
@@ -31,3 +32,49 @@ class Thread(db.Model):
         self.socket_b = socket_b
         self.data = data
         self.note = note
+
+    @staticmethod
+    def find_routes():
+        stmt = text("SELECT DISTINCT data FROM thread where LENGTH(data) > 0")
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row[0])
+        return result
+
+    #Saa parametriksi merkkijonon route jonka perusteella etsitään se reitti 
+    #jota pitkin tietty data liikkuu kaapeliverkostossa.
+    #palautetaan lista joka sisältää askeleen verkossa / rivi
+    @staticmethod
+    def get_route(route):
+        stmt = text("select controller.name, cable.name, thread.socket_a, thread.socket_b from controller inner join cable on (cable.controller_a_id = controller.id or cable.controller_b_id = controller.id) inner join thread on thread.cable_id = cable.id and thread.data = :route").params(route=route)
+        res = db.engine.execute(stmt)
+        result = []
+        tmp = []
+            
+        for row in res:
+            tmp.append(row)
+
+        prevType = None
+        prevName = None
+        while(len(tmp) > 0):
+            if prevType is None:
+                result.append({"type":"Controller", "name":tmp[0][0]})
+                result.append({"type":"Cable", "name":tmp[0][1], "socket_a":tmp[0][2], "socket_b":tmp[0][3]})
+                prevType = "cab"
+                prevName = tmp[0][1]
+                tmp.pop(0)
+            for i in range(len(tmp)):
+                if prevType == "cab" and prevName == tmp[i][1]:
+                    result.append({"type":"Controller", "name":tmp[i][0]})
+                    prevType = "con"
+                    prevName = tmp[i][0]
+                    tmp.pop(i)
+                    break
+                elif prevType == "con" and prevName == tmp[i][0]:
+                    result.append({"type":"Cable", "name":tmp[0][1], "socket_a":tmp[0][2], "socket_b":tmp[0][3]})
+                    prevType = "cab"
+                    prevName = tmp[0][1]
+                    tmp.pop(i)
+                    break
+        return result

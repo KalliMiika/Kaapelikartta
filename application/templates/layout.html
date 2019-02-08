@@ -4,6 +4,18 @@
 <head>
   <meta charset="utf-8">
   <title>Kaapelikartta</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+      text-align: left;
+      min-width: 30px;
+      text-align: center;
+    }
+    </style>
 </head>
 
 <body>
@@ -22,6 +34,7 @@
   {% endif %}
 
   <ul>
+    <li><a href="{{ url_for('routes_index') }}">List routes</a></li>
     <li><a href="{{ url_for('controllers_index') }}">List controllers</a></li>
     <li><a href="{{ url_for('cables_index') }}">List cables</a></li>
   </ul>

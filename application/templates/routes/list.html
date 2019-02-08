@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<!--
+  Saa parametreiksi: 
+    String[] routes
+-->
+<table>
+    <tr>
+        <th>Routes</th>
+    </tr>
+    {% for route in routes %}
+    <tr>
+        <td>{{ route }}</td>
+        <td>
+          <form method="GET" action="{{ url_for('routes_view_one', route=route) }}">
+            <input type="submit" value="View"/>
+          </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

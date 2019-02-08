@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<!--
+  Saa parametreiksi: 
+  
+-->
+<table>
+  <tr>
+    <th>Type</th>
+    {% for step in route %}
+    <td>{{ step.type }}</td>
+    {% endfor %}
+  </tr>
+  <tr>
+    <th>Name</th>
+    {% for step in route %}
+    <td>{{ step.name }}</td>
+    {% endfor %}
+  </tr>
+  <tr>
+    <th>Thread</th>
+    {% for step in route %}
+    <td>
+      {% if step.type == "Cable" %}
+      {% if step.socket_a == step.socket_b %}
+      {{ step.socket_a }}
+      {% else %}
+      {{ step.socket_a }} >> {{ step.socket_b }}
+      {% endif %}
+      {% endif %}
+    </td>
+    {% endfor %}
+  </tr>
+</table>
+{% endblock %}
