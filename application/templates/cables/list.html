@@ -3,7 +3,7 @@
 {% block body %}
 <!--
   Saa parametreiksi: 
-    cables/models.py:  Cable[] cables
+    cables/models.py:  CableListModel[] cables
 -->
   <table>
     <tr>
@@ -22,6 +22,11 @@
       <td>{{ cable.cable.size }}</td>
       <td>
         <form method="GET" action="{{ url_for('cables_view_one', cable_id=cable.cable.id) }}">
+          <input type="submit" value="View"/>
+        </form>
+      </td>
+      <td>
+        <form method="GET" action="{{ url_for('cables_edit_one', cable_id=cable.cable.id) }}">
           <input type="submit" value="Edit"/>
         </form>
       </td>
@@ -30,6 +35,6 @@
   </table>
     
   <ul>
-    <li><a href="{{ url_for('cables_form') }}">Add a cable</a></li>
+    <li><a href="{{ url_for('cables_create') }}">Add a cable</a></li>
   </ul>
 {% endblock %}

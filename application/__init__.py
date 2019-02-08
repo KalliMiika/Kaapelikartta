@@ -35,9 +35,14 @@ from application.controllers import views
 from application.cables import models
 from application.cables import views
 
+#Luetaan kansiosta application/thread tiedostojen sisältö
+from application.threads import models
+from application.threads import views
+
 #Luetaan kansiosta application/auth tiedostojen sisältö
 from application.auth import models
 from application.auth import views
+
 
 #--------------------------Kirjautuminen---------------------------
 

@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<!--
+  Saa parametreiksi: 
+    threads/forms.py:   ThreadForm form
+    threads/models.py:  Thread thread
+-->
+<form method="POST" action="{{ url_for('threads_edit_one', thread_id=thread.id) }}">
+  <table>
+    <tr>
+      <td>
+        {{ form.number_a.label }}
+      </td>
+      <td>
+        {{ form.number_a(value=thread.number_a) }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.number_a.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.number_b.label }}
+      </td>
+      <td>
+        {{ form.number_b(value=thread.number_b) }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.number_b.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.socket_a.label }}
+      </td>
+      <td>
+        {{ form.socket_a(value=thread.socket_a) }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.socket_a.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.socket_b.label }}
+      </td>
+      <td>
+        {{ form.socket_b(value=thread.socket_b) }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.socket_b.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.data.label }}
+      </td>
+      <td>
+        {{ form.data(value=thread.data) }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.data.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.note.label }}
+      </td>
+      <td>
+        {{ form.note(value=thread.note) }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.note.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Edit this thread" />
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

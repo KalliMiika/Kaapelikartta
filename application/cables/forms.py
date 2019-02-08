@@ -15,7 +15,7 @@ class CableForm(FlaskForm):
     #Kaapelin "toisessa päässä" oleva Risteyskoje 'B'
     controller_b_id = SelectField('Controller B', [validators.optional()], coerce=int)
     #Kaapelin koko. Kaapeleita on muutamia erilaisia, joista valitaan yksi
-    size = SelectField('Size', [validators.required()])   
+    size = SelectField('Size', [validators.optional()])   
     #Mahdolliset koot:
     #100x4, 50x4, 25x4, 15x4, 10x4, 5x4
     #50x2, 20x2, 10x2

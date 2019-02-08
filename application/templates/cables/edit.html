@@ -6,7 +6,7 @@
     cables/forms.py:   CableForm form
     cables/models.py:  Cable cable
 -->
-<form method="POST" action="{{ url_for('cables_view_one', cable_id=cable.id) }}">
+<form method="POST" action="{{ url_for('cables_edit_one', cable_id=cable.id) }}">
   <table>
     <tr>
       <td>
@@ -73,7 +73,7 @@
         {{ form.size.label }}
       </td>
       <td>
-        {{ form.size() }}
+        {{ cable.size }}
       </td>
       <td>
         <ul>

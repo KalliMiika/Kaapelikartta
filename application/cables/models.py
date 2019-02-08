@@ -19,6 +19,8 @@ class Cable(db.Model):
     #Kaapelin vapaamuotoinen viesti
     note = db.Column(db.String(144), nullable=False)
 
+    threads = db.relationship("Thread", backref='cable', lazy=True)
+
     def __init__(self, controller_a_id, controller_b_id, size, name, note):
         self.controller_a_id = controller_a_id
         self.controller_b_id = controller_b_id
