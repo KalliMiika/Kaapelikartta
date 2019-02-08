@@ -79,6 +79,10 @@ def controllers_create():
     
     return redirect(url_for("controllers_index"))
 
+#Kuunnellaan osoitteeseen /controllers/<controller_id>/delete/ tulevia
+#POST-pyyntöjä. Poistetaan parametrina tulevaa <controller_id> vastaava
+#Risteyskoje tietokannasta ja uudelleenohjataan käyttäjä osoitteeseen
+#/controllers
 @app.route("/controllers/<controller_id>/delete/", methods=["POST"])
 @login_required
 def controllers_delete(controller_id):

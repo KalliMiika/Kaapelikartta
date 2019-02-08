@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<!--
+  Saa parametreiksi: 
+    cables/models.py:  Cable[] cables
+-->
+  <table>
+    <tr>
+      <th>Cable</th>
+      <th>Note</th>
+      <th>Controller A</th>
+      <th>Controller B</th>
+      <th>Size</th>
+    </tr>
+    {% for cable in cables %}
+    <tr>
+      <td>{{ cable.cable.name }}</td>
+      <td>{{ cable.cable.note }}</td>
+      <td>{{ cable.controller_a_name }}</td>
+      <td>{{ cable.controller_b_name }}</td>
+      <td>{{ cable.cable.size }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+    
+  <ul>
+    <li><a href="{{ url_for('cables_form') }}">Add a cable</a></li>
+  </ul>
+{% endblock %}

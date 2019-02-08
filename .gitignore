@@ -121,3 +121,6 @@ opendb.bat
 #activate & deactivate shortcuts
 activate.bat
 deactivate.bat
+
+#run shortcuts
+run.bat

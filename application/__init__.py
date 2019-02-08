@@ -27,9 +27,13 @@ db = SQLAlchemy(app)
 # Luetaan kansiosta application tiedoston views sisältö
 from application import views
 
-#Luetaan kansiosta application/controller tiedostojen sisältö
+#Luetaan kansiosta application/controllers tiedostojen sisältö
 from application.controllers import models
 from application.controllers import views
+
+#Luetaan kansiosta application/cables tiedostojen sisältö
+from application.cables import models
+from application.cables import views
 
 #Luetaan kansiosta application/auth tiedostojen sisältö
 from application.auth import models
