@@ -79,7 +79,7 @@ class Thread(db.Model):
                 prevType = "cab"
                 prevName = tmp[0][1]
                 tmp.pop(0)
-            boo = False
+            boo = True
             for i in range(len(tmp)):
                 if prevType == "cab" and prevName == tmp[i][1]:
                     result.append({"type":"Controller", "name":tmp[i][0]})
