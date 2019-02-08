@@ -71,6 +71,7 @@ class Thread(db.Model):
 
         prevType = None
         prevName = None
+
         while(len(tmp) > 0):
             if prevType is None:
                 result.append({"type":"Controller", "name":tmp[0][0]})
@@ -78,17 +79,22 @@ class Thread(db.Model):
                 prevType = "cab"
                 prevName = tmp[0][1]
                 tmp.pop(0)
+            boo = False
             for i in range(len(tmp)):
                 if prevType == "cab" and prevName == tmp[i][1]:
                     result.append({"type":"Controller", "name":tmp[i][0]})
                     prevType = "con"
                     prevName = tmp[i][0]
                     tmp.pop(i)
+                    boo = False
                     break
                 elif prevType == "con" and prevName == tmp[i][0]:
                     result.append({"type":"Cable", "name":tmp[0][1], "socket_a":tmp[0][2], "socket_b":tmp[0][3]})
                     prevType = "cab"
                     prevName = tmp[0][1]
                     tmp.pop(i)
+                    boo = False
                     break
+            if boo:
+                break
         return result
