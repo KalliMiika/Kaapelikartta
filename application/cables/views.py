@@ -60,7 +60,7 @@ def cables_create():
     tmp = form.size.data.split('x')
     n = int(tmp[0])*int(tmp[1])
     for i in range(n):
-        c.threads.append(Thread(i+1, i+1, "", "", "", ""))
+        c.threads.append(Thread(i+1, i+1, 0, 0, "", ""))
 
     db.session().add(c)
     db.session().commit()
