@@ -157,6 +157,12 @@
 * [Muutoslogi](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/Changelog.md)
 
 <dl>
+	<dt>Misc</dt>
+</dl>
+
+* [TODO-Lista](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/todo.md)
+
+<dl>
 	<dt>Kaapelikartta -sovelluksen elementtejä havainnollistavia paint piirroksia</dt>
 </dl>
 
