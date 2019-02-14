@@ -1,9 +1,10 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application import app, db
 from application.threads.models import Thread
 from application.threads.forms import ThreadForm
+from application.changelog.models import Changelog
 
 #Kuunnellaan osoitteeseen /threads/<thread_id>/edit/ tulevia GET- ja POST-Pyyntöjä
 #GET-Pyynnöille:
@@ -32,13 +33,31 @@ def threads_edit_one(thread_id):
     if not f.validate():
         return render_template("threads/edit.html", form = f, thread = t)
 
-    t.number_a = f.number_a.data
-    t.number_b = f.number_b.data
-    t.socket_a = f.socket_a.data
-    t.socket_b = f.socket_b.data
-    t.data = f.data.data
-    t.note = f.note.data
+    if(t.number_a != f.number_a.data):
+        log = Changelog(current_user.id, "Thread", "number_a", t.id, "Update", t.number_a, f.number_a.data)
+        db.session().add(log)  
+        t.number_a = f.number_a.data
+    if(t.number_b != f.number_b.data):
+        log = Changelog(current_user.id, "Thread", "number_b", t.id, "Update", t.number_b, f.number_b.data)
+        db.session().add(log)  
+        t.number_b = f.number_b.data
+    if(t.socket_a != f.socket_a.data):
+        log = Changelog(current_user.id, "Thread", "socket_a", t.id, "Update", t.socket_a, f.socket_a.data)
+        db.session().add(log)  
+        t.socket_a = f.socket_a.data
+    if(t.socket_b != f.socket_b.data):
+        log = Changelog(current_user.id, "Thread", "socket_b", t.id, "Update", t.socket_b, f.socket_b.data)
+        db.session().add(log)  
+        t.socket_b = f.socket_b.data
+    if(t.data != f.data.data):
+        log = Changelog(current_user.id, "Thread", "data", t.id, "Update", t.data, f.data.data)
+        db.session().add(log)  
+        t.data = f.data.data
+    if(t.note != f.note.data):
+        log = Changelog(current_user.id, "Thread", "note", t.id, "Update", t.note, f.note.data)
+        db.session().add(log)  
+        t.note = f.note.data
 
     db.session().commit()
-
+    
     return redirect(url_for("cables_view_one", cable_id=t.cable_id))

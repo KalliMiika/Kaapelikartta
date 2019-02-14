@@ -1,10 +1,11 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application import app, db
 from application.cables.models import Cable, CableListModel
 from application.threads.models import Thread
 from application.cables.forms import CableForm
+from application.changelog.models import Changelog
 
 #Kuunnellaan osoitteeseen /cables tulevia GET-Pyyntöjä
 #Palautetaan cables/list.html näkymä, 
@@ -65,6 +66,10 @@ def cables_create():
     db.session().add(c)
     db.session().commit()
 
+    log = Changelog(current_user.id, "Cable", "", c.id, "Create", "", "")
+    db.session().add(log)
+    db.session().commit()
+
     return redirect(url_for("cables_index"))
 
 #Kuunnellaan osoitteeseen /cables/<cable_id>/edit/ tulevia GET- ja POST-Pyyntöjä
@@ -99,13 +104,29 @@ def cables_edit_one(cable_id):
     f.setupChoices()
     if not f.validate():
         return render_template("cables/edit.html", form = f, cable = c)
-    if not f.validate2(True):
+    nameNotEdited = True
+    if(c.name != f.name.data):
+        nameNotEdited = False
+    if not f.validate2(nameNotEdited):
         return render_template("cables/edit.html", form = f, cable = c)
 
-    c.name = f.name.data
-    c.note = f.note.data
-    c.controller_a_id = f.controller_a_id.data
-    c.controller_b_id = f.controller_b_id.data
+    
+    if(c.name != f.name.data):
+        log = Changelog(current_user.id, "Cable", "name", c.id, "Update", c.name, f.name.data)
+        db.session().add(log)  
+        c.name = f.name.data
+    if(c.note != f.note.data):
+        log = Changelog(current_user.id, "Cable", "note", c.id, "Update", c.note, f.note.data)
+        db.session().add(log)  
+        c.note = f.note.data
+    if(c.controller_a_id != f.controller_a_id.data):
+        log = Changelog(current_user.id, "Cable", "controller_a_id", c.id, "Update", c.controller_a_id, f.controller_a_id.data)
+        db.session().add(log)  
+        c.controller_a_id = f.controller_a_id.data
+    if(c.controller_b_id != f.controller_b_id.data):
+        log = Changelog(current_user.id, "Cable", "controller_b_id", c.id, "Update", c.controller_b_id, f.controller_b_id.data)
+        db.session().add(log)  
+        c.controller_b_id = f.controller_b_id.data
 
     db.session().commit()
 

@@ -1,9 +1,10 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application import app, db
 from application.controllers.models import Controller
 from application.controllers.forms import ControllerForm
+from application.changelog.models import Changelog
 
 #Kuunnellaan osoitteeseen /controllers tulevia GET-Pyyntöjä
 #Palautetaan controllers/list.html näkymä, 
@@ -38,20 +39,38 @@ def controllers_view_one(controller_id):
 @app.route("/controllers/<controller_id>/", methods=["POST"])
 @login_required
 def controllers_edit_one(controller_id):
-    form = ControllerForm(request.form)
+    f = ControllerForm(request.form)
+    c = Controller.query.get(controller_id)
 
     #Validoidaan ControllerFormin sisältämien kenttien datat, jos
     #niissä on häikkää, niin palautetaan controllers/edit.html sivu
     #virheviestin kera.
-    if not form.validate():
-        return render_template("controllers/edit.html", form = form, controller = Controller.query.get(controller_id))
+    if not f.validate():
+        return render_template("controllers/edit.html", form = f, controller = Controller.query.get(controller_id))
+    nameNotEdited = True
+    if(c.name != f.name.data):
+        nameNotEdited = False
+    if not f.validate2(nameNotEdited):
+        return render_template("controllers/edit.html", form = f, controller = c)
 
-    c = Controller.query.get(controller_id)
 
-    c.name = form.name.data
-    c.note = form.note.data
-    c.x = form.x.data
-    c.y = form.y.data
+    if(c.name != f.name.data):
+        log = Changelog(current_user.id, "Controller", "name", c.id, "Update", c.name, f.name.data)
+        db.session().add(log)
+        c.name = f.name.data
+    if(c.note != f.note.data):
+        log = Changelog(current_user.id, "Controller", "note", c.id, "Update", c.note, f.note.data)
+        db.session().add(log)
+        c.note = f.note.data
+    if(c.x != f.x.data):
+        log = Changelog(current_user.id, "Controller", "x", c.id, "Update", c.x, f.x.data)
+        db.session().add(log)
+        c.x = f.x.data
+    if(c.y != f.y.data):
+        log = Changelog(current_user.id, "Controller", "y", c.id, "Update", c.y, f.y.data)
+        db.session().add(log)        
+        c.y = f.y.data
+
 
     db.session().commit()
 
@@ -64,17 +83,22 @@ def controllers_edit_one(controller_id):
 @app.route("/controllers/", methods=["POST"])
 @login_required
 def controllers_create():
-    form = ControllerForm(request.form)
+    f = ControllerForm(request.form)
 
     #Validoidaan ControllerFormin sisältämien kenttien datat, jos
     #niissä on häikkää, niin palautetaan controllers/new.html sivu
     #virheviestin kera.
-    if not form.validate():
-        return render_template("controllers/new.html", form = form)
+    if not f.validate():
+        return render_template("controllers/new.html", form = f)
+    if not f.validate2(False):
+        return render_template("controllers/new.html", form = f)
 
-    c = Controller(form.name.data, form.note.data, form.x.data, form.y.data)
-    
+    c = Controller(f.name.data, f.note.data, f.x.data, f.y.data)
     db.session().add(c)
+    db.session().commit()
+
+    log = Changelog(current_user.id, "Controller", "", c.id, "Create", "", "")
+    db.session().add(log)
     db.session().commit()
     
     return redirect(url_for("controllers_index"))
@@ -85,8 +109,11 @@ def controllers_create():
 #/controllers
 @app.route("/controllers/<controller_id>/delete/", methods=["POST"])
 @login_required
-def controllers_delete(controller_id):
-    Controller.query.filter_by(id=controller_id).delete()
+def controllers_delete(controller_id): 
+    log = Changelog(current_user.id, "Controller", "", controller_id, "Delete", "", "")
+    db.session().add(log)
+
+    Controller.query.filter_by(id=controller_id).delete()   
     db.session().commit()
     
     return redirect(url_for("controllers_index"))

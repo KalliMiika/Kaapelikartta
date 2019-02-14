@@ -43,6 +43,9 @@ from application.threads import views
 from application.auth import models
 from application.auth import views
 
+#Luetaan kansiosta application/changelog tiedostojen sisältö
+from application.changelog import models
+
 #Luetaan kansiosta application/routes tiedostojen sisältö
 from application.routes import views
 

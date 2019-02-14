@@ -19,6 +19,8 @@ class User(db.Model):
     password = db.Column(db.String(144), nullable=False)
     #Käyttäjän rooli (moderator / user)
     role = db.Column(db.String(144), nullable=False)
+    
+    changes = db.relationship("Changelog", backref='account', lazy=True)
 
     def __init__(self, name, username, password, role):
         self.name = name

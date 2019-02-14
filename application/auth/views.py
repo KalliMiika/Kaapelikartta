@@ -1,9 +1,10 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
 
 from application import app, db
 from application.auth.models import User
 from application.auth.forms import LoginForm, RegisterForm
+from application.changelog.models import Changelog
 
 #Kuunnellaan osoitteeseen /auth/login tulevia GET- ja POST-pyyntöjä
 #   GET-pyynnöille palautetaan auth/loginform.html sisäänkirjautumissivu, 
@@ -36,6 +37,7 @@ def auth_login():
 #"/auth/logout" osoitteeseen tulevat pyynnöt
 #kirjaavat käyttäjän ulos
 @app.route("/auth/logout")
+@login_required
 def auth_logout():
     #Käyttäjä kirjataan ulos flask_login:n 
     #tarjoamalla logout_user metodilla
@@ -52,6 +54,7 @@ def auth_logout():
 #Mikäli rekisteröinnissä tapahtuu virhe, (esim käyttäjänimi on jo 
 #käytössä) uudelleenohjataan käyttäjä osoitteeseen /auth/register
 @app.route("/auth/register", methods=["GET", "POST"])
+@login_required
 def auth_register():
     if request.method == "GET":
         return render_template("auth/new.html", form = RegisterForm())
@@ -72,12 +75,11 @@ def auth_register():
     #Luodaan uusi käyttäjä LoginFormista kerätyn datan perusteella
     #default käyttäjätaso on peruskäyttäjä "user"
     u = User(form.name.data, form.username.data, form.password.data, "user")
-    
     db.session().add(u)
     db.session().commit()
-
-    #Käyttäjä kirjataan sisään flask_login:n 
-    #tarjoamalla login_user metodilla
-    login_user(u)
     
+    log = Changelog(current_user.id, "Account", "", u.id, "Create", "", "")
+    db.session().add(log)
+    db.session().commit()
+
     return redirect(url_for("controllers_index"))
