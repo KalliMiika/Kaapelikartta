@@ -12,7 +12,7 @@ from application.changelog.forms import SearchForm
 def changelog_index():
     f = SearchForm()
     f.setupChoices()
-    return render_template("changelog/list.html", changes = Changelog.query.all(), form = f)
+    return render_template("changelog/list.html", changes = Changelog.findAll(), form = f)
 
 #Kuunnellaan osoitteeseen /changelog tulevia POST-Pyyntöjä
 #Palautetaan changelog/list.html näkymä,
@@ -44,7 +44,7 @@ def changelog_search():
         f.targetTable.default = f.targetTable.data
         return render_template("changelog/list.html", changes = changes, form = f)
     else:
-        changes = Changelog.query.all()
+        changes = Changelog.findAll()
         f.setupChoices()
         return render_template("changelog/list.html", changes = changes, form = f)
 

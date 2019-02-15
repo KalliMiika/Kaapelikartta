@@ -10,20 +10,20 @@
     <tr>
         <th>Modified By</th>
         <th>Date</th>
-        <th>Target Table</th>
-        <th>Target Column</th>
-        <th>Target Id</th>
+        <th>Type</th>
+        <th>Field</th>
+        <th>Target</th>
         <th>Action</th>
         <th>Previous Value</th>
         <th>New Value</th>
     </tr>
     {% for change in changes %}
     <tr>
-        <td>{{ change.account_id }}</td>
-        <td>{{ change.date_created }}</td>
-        <td>{{ change.modified_table }}</td>
-        <td>{{ change.modified_column }}</td>
-        <td>{{ change.modified_id }}</td>
+        <td>{{ change.modified_by }}</td>
+        <td>{{ change.date }}</td>
+        <td>{{ change.target_table }}</td>
+        <td>{{ change.target_column }}</td>
+        <td>{{ change.target }}</td>
         <td>{{ change.action }}</td>
         <td>{{ change.old_value }}</td>
         <td>{{ change.new_value }}</td>

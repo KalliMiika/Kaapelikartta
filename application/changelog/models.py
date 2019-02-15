@@ -1,6 +1,11 @@
 from application import db
 from sqlalchemy.sql import text
 
+from application.auth.models import User
+from application.controllers.models import Controller
+from application.cables.models import Cable
+from application.threads.models import Thread
+
 #Muutoslogin models.py
 class Changelog(db.Model):
 
@@ -38,40 +43,54 @@ class Changelog(db.Model):
         self.new_value = new_value
 
     @staticmethod
+    def findAll():
+        stmt = text("SELECT * FROM Changelog")
+        res = db.engine.execute(stmt)
+        return Changelog.parseRes(res)
+
+    @staticmethod
     def findByUser(user_id):
         stmt = text("SELECT * FROM Changelog WHERE account_id = :user_id").params(user_id=user_id)
         res = db.engine.execute(stmt)
-        result = []
-        for row in res:
-            result.append(row)
-        return result
+        return Changelog.parseRes(res)
 
     @staticmethod
     def findByTable(table):
         stmt = text("SELECT * FROM Changelog WHERE modified_table = :table").params(table=table)
         res = db.engine.execute(stmt)
-        result = []
-        for row in res:
-            result.append(row)
-        return result
+        return Changelog.parseRes(res)
 
     @staticmethod
     def findByUserAndTable(user_id, table):
         stmt = text("SELECT * FROM Changelog WHERE modified_table = :table "
         "AND account_id = :user_id").params(table=table, user_id=user_id)
         res = db.engine.execute(stmt)
-        result = []
-        for row in res:
-            result.append(row)
-        return result
+        return Changelog.parseRes(res)
 
     @staticmethod
-    def findByUserAndTableAndId(user_id, table, id):
+    def findByUserAndTableAndId(user_id, table, target_id):
         stmt = text("SELECT * FROM Changelog WHERE modified_table = "
                     ":table AND modified_id = :id AND "
-                    "account_id = :user_id").params(table=table, user_id=user_id, id=id)
+                    "account_id = :user_id").params(table=table, user_id=user_id, id=target_id)
         res = db.engine.execute(stmt)
+        return Changelog.parseRes(res)
+
+    def parseRes(res):
         result = []
         for row in res:
-            result.append(row)
+            target = None
+            if row[4] == "Thread":
+                t = Thread.query.get(row[6])
+                target = Cable.query.get(t.cable_id).name + " / " + str(t.socket_a)
+            elif row[4] == "Cable":
+                target = Cable.query.get(row[6]).name
+            elif row[4] == "Controller":
+                target = Controller.query.get(row[6]).name
+            elif row[4] == "Account":
+                target = User.query.get(row[6]).name
+
+            result.append({"modified_by":User.query.get(row[3]).name, "date":row[1], 
+                        "target_table":row[4], "target_column":row[5], "target":target, 
+                        "action":row[7], "old_value":row[8], "new_value":row[9]
+                        })
         return result

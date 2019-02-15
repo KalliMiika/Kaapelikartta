@@ -40,7 +40,7 @@ class SearchForm(FlaskForm):
                 self.target.choices.append((c.id, c.name))
         elif table == "Cable":
             for c in Cable.query.order_by('name'):
-                self.target.choices.append((c.name, c.name))
+                self.target.choices.append((c.id, c.name))
 
 
 class Meta:
