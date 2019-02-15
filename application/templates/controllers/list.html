@@ -18,6 +18,7 @@
       <td>{{ controller.note }}</td>
       <td>{{ controller.x }}</td>
       <td>{{ controller.y }}</td>
+      {% if current_user.is_authenticated %}
       <td>
         <form method="GET" action="{{ url_for('controllers_view_one', controller_id=controller.id) }}">
           <input type="submit" value="Edit"/>
@@ -28,6 +29,7 @@
           <input type="submit" value="X"/>
         </form>
       </td>
+      {% endif %}
     </tr>
     {% endfor %}
   </table>

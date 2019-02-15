@@ -47,11 +47,13 @@
       <td>
         {{ thread.socket_b }}
       </td>
+      {% if current_user.is_authenticated %}
       <td>
         <form method="GET" action="{{ url_for('threads_edit_one', thread_id=thread.id) }}">
           <input type="submit" value="Edit"/>
         </form>
       </td>
+      {% endif %}
     </tr>
     {% endfor %}
   </table>

@@ -74,7 +74,7 @@ def auth_register():
 
     #Luodaan uusi käyttäjä LoginFormista kerätyn datan perusteella
     #default käyttäjätaso on peruskäyttäjä "user"
-    u = User(form.name.data, form.username.data, form.password.data, "user")
+    u = User(form.name.data, form.username.data, form.password.data, form.role.data)
     db.session().add(u)
     db.session().commit()
     
@@ -82,4 +82,4 @@ def auth_register():
     db.session().add(log)
     db.session().commit()
 
-    return redirect(url_for("controllers_index"))
+    return redirect(url_for("index"))

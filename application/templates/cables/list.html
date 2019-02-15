@@ -25,11 +25,13 @@
           <input type="submit" value="View"/>
         </form>
       </td>
+      {% if current_user.is_authenticated %}
       <td>
         <form method="GET" action="{{ url_for('cables_edit_one', cable_id=cable.cable.id) }}">
           <input type="submit" value="Edit"/>
         </form>
       </td>
+      {% endif %}
     </tr>
     {% endfor %}
   </table>

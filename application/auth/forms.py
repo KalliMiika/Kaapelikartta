@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, validators
+from wtforms import PasswordField, StringField, SelectField, validators
 from application import db
 from application.auth.models import User
   
@@ -33,6 +33,7 @@ class RegisterForm(FlaskForm):
         validators.Length(min=2), 
         validators.Required()
         ])
+    role = SelectField("Role", choices=[("USER", "User"), ("ADMIN", "Admin")])
   
     #Etsitään tietokannasta käyttäjää syötetyn käyttäjätunnuksen 
     #perusteella. Jos käyttäjätunnuksella löydetään käyttäjä,
