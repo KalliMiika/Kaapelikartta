@@ -38,6 +38,9 @@
         <li class="nav-item">
           <a class="nav-link disabled" href="{{ url_for('cables_index') }}">List cables</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="{{ url_for('changelog_index') }}">View changelog</a>
+        </li>
         {% if current_user.role == "ADMIN" %}
         <li class="nav-item">
           <a class="nav-link disabled" href="{{ url_for('auth_register') }}">Add a user</a>

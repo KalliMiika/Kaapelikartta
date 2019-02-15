@@ -1,4 +1,5 @@
 from application import db
+from sqlalchemy.sql import text
 
 #Muutoslogin models.py
 class Changelog(db.Model):
@@ -35,3 +36,42 @@ class Changelog(db.Model):
         self.action = action
         self.old_value = old_value
         self.new_value = new_value
+
+    @staticmethod
+    def findByUser(user_id):
+        stmt = text("SELECT * FROM Changelog WHERE account_id = :user_id").params(user_id=user_id)
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
+        return result
+
+    @staticmethod
+    def findByTable(table):
+        stmt = text("SELECT * FROM Changelog WHERE modified_table = :table").params(table=table)
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
+        return result
+
+    @staticmethod
+    def findByUserAndTable(user_id, table):
+        stmt = text("SELECT * FROM Changelog WHERE modified_table = :table "
+        "AND account_id = :user_id").params(table=table, user_id=user_id)
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
+        return result
+
+    @staticmethod
+    def findByUserAndTableAndId(user_id, table, id):
+        stmt = text("SELECT * FROM Changelog WHERE modified_table = "
+                    ":table AND modified_id = :id AND "
+                    "account_id = :user_id").params(table=table, user_id=user_id, id=id)
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append(row)
+        return result

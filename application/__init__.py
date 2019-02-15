@@ -99,11 +99,12 @@ from application.auth import views
 
 #Luetaan kansiosta application/changelog tiedostojen sisältö
 from application.changelog import models
+from application.changelog import views
 
 #Luetaan kansiosta application/routes tiedostojen sisältö
 from application.routes import views
 
-#Luetaan kansiosta application/models tietokantaolio User
+#Luetaan kansiosta application/auth/models tietokantaolio User
 from application.auth.models import User
 
 @login_manager.user_loader

@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<!--
+  Saa parametreiksi: 
+    changelog/models.py:  Changelog[] changes
+    changelog/forms.py: Searchform form
+-->
+<table>
+    <tr>
+        <th>Modified By</th>
+        <th>Date</th>
+        <th>Target Table</th>
+        <th>Target Column</th>
+        <th>Target Id</th>
+        <th>Action</th>
+        <th>Previous Value</th>
+        <th>New Value</th>
+    </tr>
+    {% for change in changes %}
+    <tr>
+        <td>{{ change.account_id }}</td>
+        <td>{{ change.date_created }}</td>
+        <td>{{ change.modified_table }}</td>
+        <td>{{ change.modified_column }}</td>
+        <td>{{ change.modified_id }}</td>
+        <td>{{ change.action }}</td>
+        <td>{{ change.old_value }}</td>
+        <td>{{ change.new_value }}</td>
+        {% endfor %}
+</table>
+&nbsp;
+
+<form method="POST" action="{{ url_for('changelog_search') }}">
+    <table>
+        <tr>
+            <td>
+                {{ form.modified_by.label }}
+            </td>
+            <td>
+                {{ form.modified_by }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.modified_by.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.targetTable.label }}
+            </td>
+            <td>
+                {{ form.targetTable }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.targetTable.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.target.label }}
+            </td>
+            <td>
+                {{ form.target }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.target.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Search" />
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}
