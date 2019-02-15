@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user, login_required, current_user
+from flask_login import login_user, logout_user, current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.auth.models import User
 from application.auth.forms import LoginForm, RegisterForm
 from application.changelog.models import Changelog
@@ -37,7 +37,7 @@ def auth_login():
 #"/auth/logout" osoitteeseen tulevat pyynnöt
 #kirjaavat käyttäjän ulos
 @app.route("/auth/logout")
-@login_required
+@login_required(role="USER")
 def auth_logout():
     #Käyttäjä kirjataan ulos flask_login:n 
     #tarjoamalla logout_user metodilla
@@ -54,7 +54,7 @@ def auth_logout():
 #Mikäli rekisteröinnissä tapahtuu virhe, (esim käyttäjänimi on jo 
 #käytössä) uudelleenohjataan käyttäjä osoitteeseen /auth/register
 @app.route("/auth/register", methods=["GET", "POST"])
-@login_required
+@login_required(role="ADMIN")
 def auth_register():
     if request.method == "GET":
         return render_template("auth/new.html", form = RegisterForm())

@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.controllers.models import Controller
 from application.controllers.forms import ControllerForm
 from application.changelog.models import Changelog
@@ -17,7 +17,7 @@ def controllers_index():
 #Palautetaan controllers/new.html sivu, parametriksi annetaan
 #controllers/forms.py määrittelemät elementit
 @app.route("/controllers/new/")
-@login_required
+@login_required(role="USER")
 def controllers_form():
     return render_template("controllers/new.html", form = ControllerForm())
 
@@ -27,7 +27,7 @@ def controllers_form():
 #controllers/edit.html sivu, parametriksi annetaan
 #controllers/forms.py määrittelemät elementit
 @app.route("/controllers/<controller_id>/", methods=["GET"])
-@login_required
+@login_required(role="USER")
 def controllers_view_one(controller_id):
     return render_template("controllers/edit.html", form = ControllerForm(), controller = Controller.query.get(controller_id))
 
@@ -37,7 +37,7 @@ def controllers_view_one(controller_id):
 #Päivitetään lopuksi muunneltu risteyskoje tietokantaan ja
 #uudelleenohjataan käyttäjä osoitteeseen /controllers
 @app.route("/controllers/<controller_id>/", methods=["POST"])
-@login_required
+@login_required(role="USER")
 def controllers_edit_one(controller_id):
     f = ControllerForm(request.form)
     c = Controller.query.get(controller_id)
@@ -81,7 +81,7 @@ def controllers_edit_one(controller_id):
 #ja lisätään se lopuksi tietokantaan  ja uudelleenohjataan 
 #käyttäjä osoitteeseen /controllers
 @app.route("/controllers/", methods=["POST"])
-@login_required
+@login_required(role="USER")
 def controllers_create():
     f = ControllerForm(request.form)
 
@@ -108,7 +108,7 @@ def controllers_create():
 #Risteyskoje tietokannasta ja uudelleenohjataan käyttäjä osoitteeseen
 #/controllers
 @app.route("/controllers/<controller_id>/delete/", methods=["POST"])
-@login_required
+@login_required(role="USER")
 def controllers_delete(controller_id): 
     log = Changelog(current_user.id, "Controller", "", controller_id, "Delete", "", "")
     db.session().add(log)

@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.cables.models import Cable, CableListModel
 from application.threads.models import Thread
 from application.cables.forms import CableForm
@@ -36,7 +36,7 @@ def cables_view_one(cable_id):
 #   lopuksi tietokantaan  ja uudelleenohjataan käyttäjä 
 #   osoitteeseen /cables
 @app.route("/cables/new/", methods=["GET", "POST"])
-@login_required
+@login_required(role="USER")
 def cables_create():
     if request.method == "GET":
         f = CableForm()
@@ -83,7 +83,7 @@ def cables_create():
 #   Päivitetään lopuksi muunneltu kaapeli tietokantaan ja
 #   uudelleenohjataan käyttäjä osoitteeseen /cables
 @app.route("/cables/<cable_id>/edit/", methods=["GET", "POST"])
-@login_required
+@login_required(role="USER")
 def cables_edit_one(cable_id):
     if request.method == "GET":
         c = Cable.query.get(cable_id)

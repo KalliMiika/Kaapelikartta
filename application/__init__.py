@@ -22,6 +22,60 @@ else:
 # Luodaan db-olio, jota käytetään tietokannan käsittelyyn
 db = SQLAlchemy(app)
 
+#--------------------------Kirjautuminen---------------------------
+
+#Tuodaan randomgeneraattori käyttöön?
+from os import urandom
+
+#Randomgeneroidaan salaiset avaimet?
+app.config["SECRET_KEY"] = urandom(32)
+
+#Tuodaan flask_loginin tarjoama LoginManager käyttöön
+from flask_login import LoginManager, current_user
+
+#Luodaan LoginManager olio
+login_manager = LoginManager()
+login_manager.setup_app(app)
+
+#Määritetään login_managerille login näkymä
+# auth/views.py metodi def auth_login():
+login_manager.login_view = "auth_login"
+
+#Määritellään login_managerille virheviesti kirjautumisen vaatimiselle
+login_manager.login_message = "Please login to use this functionality."
+
+# roles in login_required
+from functools import wraps
+
+def login_required(role="ANY"):
+    def wrapper(fn):
+        @wraps(fn)
+        def decorated_view(*args, **kwargs):
+            if not current_user:
+                return login_manager.unauthorized()
+            try:
+                if not current_user.is_authenticated():
+                    return login_manager.unauthorized()
+            except:
+                return login_manager.unauthorized()
+                
+            unauthorized = False
+
+            if role != "ANY":
+                unauthorized = True
+                
+                for user_role in current_user.roles():
+                    if user_role == role:
+                        unauthorized = False
+                        break
+
+            if unauthorized:
+                return login_manager.unauthorized()
+            
+            return fn(*args, **kwargs)
+        return decorated_view
+    return wrapper
+
 #---------------Oman sovelluksen toiminnallisuudet-----------------
 
 # Luetaan kansiosta application tiedoston views sisältö
@@ -49,34 +103,15 @@ from application.changelog import models
 #Luetaan kansiosta application/routes tiedostojen sisältö
 from application.routes import views
 
-#--------------------------Kirjautuminen---------------------------
-
 #Luetaan kansiosta application/models tietokantaolio User
 from application.auth.models import User
 
-#Tuodaan randomgeneraattori käyttöön?
-from os import urandom
-
-#Randomgeneroidaan salaiset avaimet?
-app.config["SECRET_KEY"] = urandom(32)
-
-#Tuodaan flask_loginin tarjoama LoginManager käyttöön
-from flask_login import LoginManager
-
-#Luodaan LoginManager olio
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-#Määritetään login_managerille login näkymä
-# auth/views.py metodi def auth_login():
-login_manager.login_view = "auth_login"
-
-#Määritellään login_managerille virheviesti kirjautumisen vaatimiselle
-login_manager.login_message = "Please login to use this functionality."
-
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(user_id)
+    try:
+        return User.query.get(user_id)
+    except:
+        return None
 
 #------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.threads.models import Thread
 from application.threads.forms import ThreadForm
 from application.changelog.models import Changelog
@@ -17,7 +17,7 @@ from application.changelog.models import Changelog
 #   Päivitetään lopuksi muunneltu säie tietokantaan ja
 #   uudelleenohjataan käyttäjä osoitteeseen "täytä"
 @app.route("/threads/<thread_id>/edit/", methods=["GET", "POST"])
-@login_required
+@login_required(role="USER")
 def threads_edit_one(thread_id):
     if request.method == "GET":
         f = ThreadForm()

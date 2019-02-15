@@ -41,4 +41,10 @@ class User(db.Model):
         return True
 
     def roles(self):
-        return self.role
+        ret = []
+        if self.role == "USER":
+            ret.append("USER")
+        if self.role == "ADMIN":
+            ret.append("USER")
+            ret.append("ADMIN")
+        return ret
