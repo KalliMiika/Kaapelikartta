@@ -13,18 +13,22 @@ from application.changelog.models import Changelog
 #tulevia GET ja POST -Pyyntöjä
 # 
 @app.route("/crossconnections/<controller_id>/create/", methods=["GET", "POST"])
+@login_required(role="USER")
 def crossconnections_create(controller_id):
     if request.method == "GET":
         f = CrossconnectionForm()
-        f.setupChoices()
-        return render_template("crossconnections/new.html", form = f, controller_id = controller_id)
+        f.setupChoices(controller_id)
+        c = Controller.query.get(controller_id)
+        return render_template("crossconnections/new.html", form = f, controller = c)
 
     f = CrossconnectionForm(request.form)
-    f.setupChoices()
+    f.setupChoices(controller_id)
     if not f.validate():
-        return render_template("crossconnections/new.html", form = f, controller_id = controller_id)
+        c = Controller.query.get(controller_id)
+        return render_template("crossconnections/new.html", form = f, controller = c)
     if not f.validate2(False):
-        return render_template("crossconnections/new.html", form = f, controller_id = controller_id)
+        c = Controller.query.get(controller_id)
+        return render_template("crossconnections/new.html", form = f, controller = c)
     
     cc = Crossconnection(controller_id, f.thread_a_id.data, f.thread_b_id.data, f.device_a.data, f.device_b.data)
     db.session().add(cc)
@@ -34,4 +38,4 @@ def crossconnections_create(controller_id):
     db.session().add(log)
     db.session().commit()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("controllers_view_one", controller_id = controller_id))

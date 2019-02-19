@@ -26,8 +26,10 @@ class CrossconnectionForm(FlaskForm):
         return True
 
     #Alustetaan SelectFieldien sisältö
-    def setupChoices(self):
-        choices = [(t.id, Cable.query.get(t.cable_id).name + "/" + str(t.socket_a)) for t in Thread.query.all()]
+    def setupChoices(self, controller_id):
+        choices = []
+        for c in Cable.findThreadsByControllerId(controller_id):
+            choices.append((c.threadId, c.cableName+"/"+str(c.threadSocket)))
         self.thread_a_id.choices = choices
         self.thread_b_id.choices = choices
 

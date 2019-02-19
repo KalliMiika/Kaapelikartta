@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<!--
+  Saa parametreiksi: 
+    controllers/models.py:  Controller controller
+    customTaulu             Ham ham
+-->
+<h2>{{ controller.name }}</h2>
+<table>
+    <tr>
+        <th>Kaapeli A</th>
+        <th>Säie A</th>
+        <th>Data</th>
+        <th>Laite A</th>
+        <th>Laite B</th>
+        <th>Data</th>
+        <th>Säie B</th>
+        <th>Kaapeli B</th>
+    </tr>
+    {% for h in ham %}
+    <tr>
+        <td>{{ h.cable_a }}</td>
+        <td>{{ h.thread_a }}</td>
+        <td>{{ h.data_a }}</td>
+        <td>{{ h.device_a }}</td>
+        <td>{{ h.device_b }}</td>
+        <td>{{ h.data_b }}</td>
+        <td>{{ h.thread_b }}</td>
+        <td>{{ h.cable_b }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<ul>
+  <li><a href="{{ url_for('crossconnections_create', controller_id=controller.id) }}">Add a crossconnection for this controller</a></li>
+</ul>
+{% endblock %}

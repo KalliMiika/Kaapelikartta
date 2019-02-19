@@ -3,9 +3,11 @@
 {% block body %}
 <!--
   Saa parametreiksi: 
-    crossconnections/forms.py: CrossconnectionForm form
+    crossconnections/forms.py:  CrossconnectionForm form
+    controllers/models.py:      Controller controller
 -->
-<form method="POST" action="{{ url_for('crossconnections_create', controller_id=controller_id) }}">
+<h2>{{ controller.name }}</h2>
+<form method="POST" action="{{ url_for('crossconnections_create', controller_id=controller.id) }}">
   <table>
     <tr>
       <td>

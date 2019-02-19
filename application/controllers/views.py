@@ -5,6 +5,9 @@ from application import app, db, login_required
 from application.controllers.models import Controller
 from application.controllers.forms import ControllerForm
 from application.changelog.models import Changelog
+from application.crossconnections.models import Crossconnection
+from application.cables.models import Cable
+from application.threads.models import Thread
 
 #Kuunnellaan osoitteeseen /controllers tulevia GET-Pyyntöjä
 #Palautetaan controllers/list.html näkymä, 
@@ -12,6 +15,7 @@ from application.changelog.models import Changelog
 @app.route("/controllers", methods=["GET"])
 def controllers_index():
     return render_template("controllers/list.html", controllers = Controller.query.all())
+
 
 #Kuunnellaan osoitteeseen /controllers/new/ tulevia GET-Pyyntöjä
 #Palautetaan controllers/new.html sivu, parametriksi annetaan
@@ -24,9 +28,33 @@ def controllers_form():
 
 #Kuunnellaan osoitteeseen /controllers/<controller_id>/view/
 @app.route("/controllers/<controller_id>/view/", methods=["GET"])
-@login_required(role="USER")
 def controllers_view_one(controller_id):
-    return redirect(url_for("index"))
+    c = Controller.query.get(controller_id)
+    ham = []
+    ccs = Crossconnection.query.filter_by(controller_id=controller_id)
+    for cc in ccs:
+        thread_a = None
+        cable_a = None
+        if cc.thread_a_id != None:
+            thread_a = Thread.query.get(cc.thread_a_id)
+            cable_a = Cable.query.get(thread_a.cable_id).name
+            data_a = Thread.query.get(cc.thread_a_id).data
+            thread_a = Thread.query.get(cc.thread_a_id).socket_a
+        thread_b = None
+        cable_b = None
+        if cc.thread_a_id != None:
+            thread_b = Thread.query.get(cc.thread_b_id)
+            cable_b = Cable.query.get(thread_b.cable_id).name
+            data_b = Thread.query.get(cc.thread_b_id).data
+            thread_b = Thread.query.get(cc.thread_b_id).socket_a
+        ham.append({
+            "cable_a":cable_a, "cable_b":cable_b,
+            "thread_a":thread_a, "thread_b":thread_b,
+            "data_a":data_a, "data_b":data_b,
+            "device_a":cc.device_a, "device_b":cc.device_b
+        })
+    return render_template("controllers/view.html", controller = c, ham = ham)
+
 
 #Kuunnellaan osoitteeseen /controllers/<controller_id> tulevia 
 #GET- ja POST -Pyyntöjä
@@ -82,6 +110,7 @@ def controllers_edit_one(controller_id):
 
     return redirect(url_for("controllers_index"))
 
+
 #Kuunnellaan osoitteeseen /controllers/ tulevia POST-Pyyntöjä
 #Syötteestä kerätään risteyskojeelle nimi, viesti, x ja y koordinaatit
 #ja lisätään se lopuksi tietokantaan  ja uudelleenohjataan 
@@ -108,6 +137,7 @@ def controllers_create():
     db.session().commit()
     
     return redirect(url_for("controllers_index"))
+
 
 #Kuunnellaan osoitteeseen /controllers/<controller_id>/delete/ tulevia
 #POST-pyyntöjä. Poistetaan parametrina tulevaa <controller_id> vastaava

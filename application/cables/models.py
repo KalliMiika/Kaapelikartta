@@ -1,5 +1,6 @@
 from application import db
 from application.controllers.models import Controller
+from sqlalchemy.sql import text
 
 #Kaapelin models.py
 class Cable(db.Model):
@@ -27,6 +28,14 @@ class Cable(db.Model):
         self.size = size
         self.name = name
         self.note = note
+
+    @staticmethod
+    def findThreadsByControllerId(controller_id):
+        stmt = text("SELECT Cable.name AS cableName, Thread.socket_a AS threadSocket, Thread.id AS threadId FROM Cable, Thread "
+                    "WHERE (Cable.controller_a_id = :controller_id OR Cable.controller_b_id = :controller_id) "
+                    "AND Thread.cable_id = cable.id").params(controller_id=controller_id)
+        res = db.engine.execute(stmt)
+        return res
 
 #Kaapeleiden listaamista varten olio, jolle annetaan kaapeliin
 #kytkettyjen Risteyskojeiden nimet
