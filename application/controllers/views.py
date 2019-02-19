@@ -22,23 +22,29 @@ def controllers_form():
     return render_template("controllers/new.html", form = ControllerForm())
 
 
-#Kuunnellaan osoitteeseen /controllers/<controller_id> tulevia GET-Pyyntöjä
+#Kuunnellaan osoitteeseen /controllers/<controller_id>/view/
+@app.route("/controllers/<controller_id>/view/", methods=["GET"])
+@login_required(role="USER")
+def controllers_view_one(controller_id):
+    return redirect(url_for("index"))
+
+#Kuunnellaan osoitteeseen /controllers/<controller_id> tulevia 
+#GET- ja POST -Pyyntöjä
+#Get -Pyynöille: 
 #Palautetaan <controller_id>:n määrittelemää risteyskojetta vastaava
 #controllers/edit.html sivu, parametriksi annetaan
 #controllers/forms.py määrittelemät elementit
-@app.route("/controllers/<controller_id>/", methods=["GET"])
-@login_required(role="USER")
-def controllers_view_one(controller_id):
-    return render_template("controllers/edit.html", form = ControllerForm(), controller = Controller.query.get(controller_id))
-
-#Kuunnellaan osoitteeseen /controllers/<controller_id> tulevia POST-Pyyntöjä
+#Post -Pyynnöille:
 #Etsitään <controller_id>:tä vastaava risteyskoju tietokannasta ja
 #päivitetään sen tiedot POST-Pyynnön mukana tulleilla syötteillä.
 #Päivitetään lopuksi muunneltu risteyskoje tietokantaan ja
 #uudelleenohjataan käyttäjä osoitteeseen /controllers
-@app.route("/controllers/<controller_id>/", methods=["POST"])
+@app.route("/controllers/<controller_id>/edit/", methods=["GET", "POST"])
 @login_required(role="USER")
 def controllers_edit_one(controller_id):
+    if request.method == "GET":
+        return render_template("controllers/edit.html", form = ControllerForm(), controller = Controller.query.get(controller_id))
+    
     f = ControllerForm(request.form)
     c = Controller.query.get(controller_id)
 

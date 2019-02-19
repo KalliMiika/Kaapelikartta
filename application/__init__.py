@@ -93,6 +93,10 @@ from application.cables import views
 from application.threads import models
 from application.threads import views
 
+#Luetaan kansiosta application/crossconnections tiedostojen sisältö
+from application.crossconnections import models
+from application.crossconnections import views
+
 #Luetaan kansiosta application/auth tiedostojen sisältö
 from application.auth import models
 from application.auth import views

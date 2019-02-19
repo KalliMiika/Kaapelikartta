@@ -17,6 +17,8 @@ class Controller(db.Model):
     # jonka perusteella se asetetaan karttanäkymään
     y = db.Column(db.Integer, nullable=False)
 
+    crossconnections = db.relationship("Crossconnection", backref='controller', lazy=True)
+
     def __init__(self, name, note, x, y):
         self.name = name
         self.note = note

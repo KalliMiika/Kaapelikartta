@@ -14,7 +14,7 @@ class SearchForm(FlaskForm):
     target = SelectField("Search by object", choices=[("", "")])
 
     table_choices = [("", ""), ("Account", "Account"), ("Controller", "Controller"), 
-                    ("Cable", "Cable"), ("Thread", "Thread")]
+                    ("Cable", "Cable"), ("Thread", "Thread"), ("Crossconnection", "Cross-connection")]
 
     #Alustetaan SelectFieldien sisältö
     def setupChoices(self):
@@ -41,7 +41,6 @@ class SearchForm(FlaskForm):
         elif table == "Cable":
             for c in Cable.query.order_by('name'):
                 self.target.choices.append((c.id, c.name))
-
 
 class Meta:
 #toistaiseksi csrf = false, millä turvautuminen 
