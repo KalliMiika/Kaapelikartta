@@ -143,8 +143,8 @@ def cables_delete(cable_id):
     log = Changelog(current_user.id, "Cable", "", cable_id, "Delete", Cable.query.get(cable_id).name, "")
     db.session().add(log)
 
-    for t in Thread.query.filter_by(cable_id = cable.id):
-        Thread.query.filter_by(cable_id=c.id).delete()
+    for t in Thread.query.filter_by(cable_id = cable_id):
+        Thread.query.filter_by(cable_id=cable_id).delete()
     
     Cable.query.filter_by(id=cable_id).delete()   
     db.session().commit()
