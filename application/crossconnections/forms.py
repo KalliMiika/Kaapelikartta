@@ -29,7 +29,7 @@ class CrossconnectionForm(FlaskForm):
     def setupChoices(self, controller_id):
         choices = []
         for c in Cable.findThreadsByControllerId(controller_id):
-            choices.append((c.threadId, c.cableName+"/"+str(c.threadSocket)))
+            choices.append((c.thread_id, c.cable_name+"/"+str(c.thread_socket)))
         self.thread_a_id.choices = choices
         self.thread_b_id.choices = choices
 

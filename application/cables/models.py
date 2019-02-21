@@ -31,7 +31,7 @@ class Cable(db.Model):
 
     @staticmethod
     def findThreadsByControllerId(controller_id):
-        stmt = text("SELECT Cable.name AS cableName, Thread.socket_a AS threadSocket, Thread.id AS threadId FROM Cable, Thread "
+        stmt = text("SELECT Cable.name AS cable_name, Thread.socket_a AS thread_socket, Thread.id AS thread_id FROM Cable, Thread "
                     "WHERE (Cable.controller_a_id = :controller_id OR Cable.controller_b_id = :controller_id) "
                     "AND Thread.cable_id = cable.id").params(controller_id=controller_id)
         res = db.engine.execute(stmt)

@@ -77,20 +77,26 @@ class Changelog(db.Model):
 
     def parseRes(res):
         result = []
-        for row in res:
+        for change in res:
             target = None
-            if row[4] == "Thread":
-                t = Thread.query.get(row[6])
+            if change.modified_table == "Thread":
+                t = Thread.query.get(change.modified_id)
                 target = Cable.query.get(t.cable_id).name + " / " + str(t.socket_a)
-            elif row[4] == "Cable":
-                target = Cable.query.get(row[6]).name
-            elif row[4] == "Controller":
-                target = Controller.query.get(row[6]).name
-            elif row[4] == "Account":
-                target = User.query.get(row[6]).name
+            elif change.modified_table == "Cable":
+                if change.action == "Delete":
+                    target = change.old_value
+                else:
+                    target = Cable.query.get(change.modified_id).name
+            elif change.modified_table == "Controller":
+                if change.action == "Delete":
+                    target = change.old_value
+                else:
+                    target = Controller.query.get(change.modified_id).name
+            elif change.modified_table == "Account":
+                target = User.query.get(change.modified_id).name
 
-            result.append({"modified_by":User.query.get(row[3]).name, "date":row[1], 
-                        "target_table":row[4], "target_column":row[5], "target":target, 
-                        "action":row[7], "old_value":row[8], "new_value":row[9]
+            result.append({"modified_by":User.query.get(change[3]).name, "date":change[1], 
+                        "target_table":change[4], "target_column":change[5], "target":target, 
+                        "action":change[7], "old_value":change[8], "new_value":change[9]
                         })
         return result
