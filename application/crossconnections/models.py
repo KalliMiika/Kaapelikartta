@@ -25,4 +25,3 @@ class Crossconnection(db.Model):
         self.thread_b_id = thread_b_id
         self.device_a = device_a
         self.device_b = device_b
-

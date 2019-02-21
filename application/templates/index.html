@@ -1,7 +1,19 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <p>
-    Tervetuloa Kaapelikarttaan
-  </p>
+<!--
+  Saa parametreiksi: 
+    controllers/models.py:  Controller[] controllers
+-->
+<div class="tausta">
+  <img src="https://puu.sh/CPJeZ/57eab86292.png" width="1600" height="900" />
+</div>
+  {% for controller in controllers %}
+  <div id="{{ controller.id }}" class="risteysKoje" style="top: {{ controller.y }}px; left: {{ controller.x }}px;">
+    <form method="GET" action="{{ url_for('controllers_view_one', controller_id=controller.id) }}">
+      <input type="submit" value="{{ controller.name }}" />
+    </form>
+  </div>
+  {% endfor %}
+
 {% endblock %}
