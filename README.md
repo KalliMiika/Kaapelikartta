@@ -136,6 +136,11 @@
 	Testitunnukset: 
 		Käyttäjänimi: testi1
 		Salasana: testi2
+<dl>
+	<dt>Omalle koneelle</dt>
+</dl>
+
+* [Asennusohjeet](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/asennusohje.md)
 
 <dl>
 	<dt>Tietokanta</dt>
