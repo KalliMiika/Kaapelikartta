@@ -1,5 +1,6 @@
-#Asennusohjeet Kaapelikartta -sovellukselle
-##Tarvitset seuraavat ohjelmistot ohjelman käynnistämiseksi:
+# Asennusohjeet Kaapelikartta -sovellukselle
+
+### Tarvitset seuraavat ohjelmistot ohjelman käynnistämiseksi:
 <dl>
 	<dt>
 		Tuen Python-kielisten ohjelmien suorittamiseen.
@@ -19,9 +20,8 @@
 	<dd>
 		Ohjeet löytyy osoitteesta https://docs.python.org/3/tutorial/venv.html
 	</dd>
-  <dt>
-    Ohjelman käynnistys ohjeet:
-  </dt>
+	
+### Ohjelman käynnistys ohjeet:
   <dd>
     Asenna venv ohjelman juurikansioon seuraamalla edellämainittuja ohjeita.
   </dd>
