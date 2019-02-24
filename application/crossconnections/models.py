@@ -56,13 +56,14 @@ class Crossconnection(db.Model):
             end = True
             crossConnection = Crossconnection.query.get(current.id)
             controller = Controller.query.get(crossConnection.controller_id)
+            if not crossConnection.thread_b_id == 0:
+                end = False
             cable = None
-            thread = Thread.query.get(current.thread_b_id)
+            thread = None
             socket_a = None
             socket_b = None
-            if not thread is None:
-                end = False
             if not end:
+                thread = Thread.query.get(current.thread_b_id)
                 cable = Cable.query.get(thread.cable_id)
                 #Ristikytkennät eivät ota kantaa siihen miten päin kaapelit ovat,
                 #joten syncataan socketit oikein päin

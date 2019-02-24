@@ -1,4 +1,5 @@
 from application import db
+from sqlalchemy.sql import text
 
 #Risteyskojeen models.py
 class Controller(db.Model):
@@ -24,3 +25,9 @@ class Controller(db.Model):
         self.note = note
         self.x = x
         self.y = y
+
+    @staticmethod
+    def findAll():
+        stmt = text("SELECT * FROM Controller WHERE id > 0 ORDER BY Controller.name")
+        res = db.engine.execute(stmt)
+        return res

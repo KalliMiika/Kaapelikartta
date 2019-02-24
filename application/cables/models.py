@@ -30,16 +30,22 @@ class Cable(db.Model):
         self.note = note
 
     @staticmethod
+    def findAll():
+        stmt = text("SELECT * FROM Cable WHERE id > 0 ORDER BY Cable.name")
+        res = db.engine.execute(stmt)
+        return res
+
+    @staticmethod
     def findThreadsByControllerId(controller_id):
         stmt = text("SELECT Cable.name AS cable_name, Thread.socket_a AS thread_socket, Thread.id AS thread_id FROM Cable, Thread "
                     "WHERE (Cable.controller_a_id = :controller_id OR Cable.controller_b_id = :controller_id) "
-                    "AND Thread.cable_id = cable.id").params(controller_id=controller_id)
+                    "AND Thread.cable_id = cable.id ORDER BY Cable.name, Thread.socket_a").params(controller_id=controller_id)
         res = db.engine.execute(stmt)
         return res
 
     @staticmethod
     def findAllOrderByName():
-        stmt = text("SELECT * FROM Cable ORDER BY name")
+        stmt = text("SELECT * FROM Cable WHERE id > 0 ORDER BY Cable.name")
         res = db.engine.execute(stmt)
         return res
 

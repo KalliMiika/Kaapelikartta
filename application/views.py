@@ -6,14 +6,7 @@ from application.cables.models import Cable
 
 @app.route("/")
 def index():
-    cs = Controller.query.all()
-    controllers = []
-    for c in cs:
-        controllers.append({
-            "id":c.id,
-            "name":c.name,
-            "style":"top: "+str(c.y)+"px; left: "+str(c.x)+"px;"
-        })
+    cs = Controller.findAll()
     cables = []
     for c in Cable.query.all():
         con_a = Controller.query.get(c.controller_a_id)
@@ -26,4 +19,4 @@ def index():
             "x2":con_b.x,
             "y2":con_b.y
         })
-    return render_template("index.html", controllers = Controller.query.all(), cables = cables)
+    return render_template("index.html", controllers = Controller.findAll(), cables = cables)
