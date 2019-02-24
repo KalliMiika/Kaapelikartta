@@ -3,17 +3,28 @@
 {% block body %}
 <!--
   Saa parametreiksi: 
-    controllers/models.py:  Controller[] controllers
+    /views.py määritelty:  Controller[] controllers
+    /views.py määritelty:  Cable[] cables
 -->
+<script>
+  function submit(url){
+    location.href=url;
+  }
+</script>
+
 <div class="tausta">
   <img src="https://puu.sh/CPJeZ/57eab86292.png" width="1600" height="900" />
 </div>
   {% for controller in controllers %}
-  <div id="{{ controller.id }}" class="risteysKoje" style="top: {{ controller.y }}px; left: {{ controller.x }}px;">
-    <form method="GET" action="{{ url_for('controllers_view_one', controller_id=controller.id) }}">
-      <input type="submit" value="{{ controller.name }}" />
-    </form>
+  <div class="risteysKoje" style="top: {{ controller.y }}px; left: {{ controller.x }}px;" onclick="submit('{{ url_for('controllers_view_one', controller_id=controller.id) }}')">
+  {{ controller.name }}
   </div>
   {% endfor %}
+  <svg class="tausta">
+    {% for cable in cables %}
+    <line class="cable" x1="{{ cable.x1+25 }}" y1="{{ cable.y1-30 }}" x2="{{ cable.x2+25 }}" y2="{{ cable.y2-30 }}" stroke="black" stroke-width="4" onclick="submit('{{ url_for('cables_view_one', cable_id=cable.id) }}')"/>
+    <text x="{{ ((cable.x1+25)+(cable.x2+25))/2+5 }}" y="{{ ((cable.y1-30)+(cable.y2-30))/2-5 }}" fill="black" style="font-size: 12pt; font-weight:bold;">{{ cable.name }}</text>
+    {% endfor %}
+  </svg>
 
 {% endblock %}
