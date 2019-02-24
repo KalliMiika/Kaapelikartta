@@ -146,10 +146,10 @@ def controllers_create():
 @app.route("/controllers/<controller_id>/delete/", methods=["POST"])
 @login_required(role="USER")
 def controllers_delete(controller_id): 
-    log = Changelog(current_user.id, "Controller", "", "", "Delete", Controller.query.get(controller_id).name, "")
+    log = Changelog(current_user.id, "Controller", "", 0, "Delete", Controller.query.get(controller_id).name, "")
 
     for c in Cable.query.filter_by(controller_a_id = controller_id):
-        log2 = Changelog(current_user.id, "Cable", "", c.id, "Delete", Cable.query.get(c.id).name, "")
+        log2 = Changelog(current_user.id, "Cable", "", 0, "Delete", Cable.query.get(c.id).name, "")
 
         for t in Thread.query.filter_by(cable_id = c.id):
             Changelog.deleteByTableAndId("Thread", t.id)
@@ -162,7 +162,7 @@ def controllers_delete(controller_id):
         db.session().commit()
 
     for c in Cable.query.filter_by(controller_b_id = controller_id):
-        log2 = Changelog(current_user.id, "Cable", "", c.id, "Delete", Cable.query.get(c.id).name, "")
+        log2 = Changelog(current_user.id, "Cable", "", 0, "Delete", Cable.query.get(c.id).name, "")
 
         for t in Thread.query.filter_by(cable_id = c.id):
             Changelog.deleteByTableAndId("Thread", t.id)

@@ -140,7 +140,7 @@ def cables_edit_one(cable_id):
 @app.route("/cables/<cable_id>/delete/", methods=["POST"])
 @login_required(role="USER")
 def cables_delete(cable_id): 
-    log = Changelog(current_user.id, "Cable", "", "", "Delete", Cable.query.get(cable_id).name, "")
+    log = Changelog(current_user.id, "Cable", "", 0, "Delete", Cable.query.get(cable_id).name, "")
 
     for t in Thread.query.filter_by(cable_id = cable_id):
         Changelog.deleteByTableAndId("Thread", t.id)
