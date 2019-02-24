@@ -14,7 +14,7 @@ from application.threads.models import Thread
 #jolle annetaan "Select * from Controller"-kyselyn tulos
 @app.route("/controllers", methods=["GET"])
 def controllers_index():
-    return render_template("controllers/list.html", controllers = Controller.query.all())
+    return render_template("controllers/list.html", controllers = Controller.query.order_by(Controller.name).all())
 
 
 #Kuunnellaan osoitteeseen /controllers/new/ tulevia GET-Pyyntöjä

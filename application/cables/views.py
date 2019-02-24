@@ -1,5 +1,6 @@
 from flask import redirect, render_template, request, url_for
 from flask_login import current_user
+from sqlalchemy import asc
 
 from application import app, db, login_required
 from application.cables.models import Cable, CableListModel
@@ -13,7 +14,7 @@ from application.changelog.models import Changelog
 @app.route("/cables", methods=["GET"])
 def cables_index():
     cables = []
-    for cable in Cable.query.all():
+    for cable in Cable.findAllOrderByName():
         cables.append(CableListModel(cable))
     return render_template("cables/list.html", cables = cables)
 

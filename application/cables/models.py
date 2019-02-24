@@ -20,7 +20,7 @@ class Cable(db.Model):
     #Kaapelin vapaamuotoinen viesti
     note = db.Column(db.String(144), nullable=False)
 
-    threads = db.relationship("Thread", backref='cable', lazy=True)
+    threads = db.relationship("Thread", backref='cable', lazy=True, order_by="Thread.socket_a")
 
     def __init__(self, controller_a_id, controller_b_id, size, name, note):
         self.controller_a_id = controller_a_id
@@ -34,6 +34,12 @@ class Cable(db.Model):
         stmt = text("SELECT Cable.name AS cable_name, Thread.socket_a AS thread_socket, Thread.id AS thread_id FROM Cable, Thread "
                     "WHERE (Cable.controller_a_id = :controller_id OR Cable.controller_b_id = :controller_id) "
                     "AND Thread.cable_id = cable.id").params(controller_id=controller_id)
+        res = db.engine.execute(stmt)
+        return res
+
+    @staticmethod
+    def findAllOrderByName():
+        stmt = text("SELECT * FROM Cable ORDER BY name")
         res = db.engine.execute(stmt)
         return res
 
