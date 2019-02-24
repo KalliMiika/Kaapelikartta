@@ -8,12 +8,10 @@
 <table>
     <tr>
         <th>Route</th>
-        <th>Length</th>
     </tr>
     {% for route in routes %}
     <tr>
         <td>{{ route.name }}</td>
-        <td>{{ route.length }}</td>
         <td>
           <form method="GET" action="{{ url_for('routes_view_one', route=route.name) }}">
             <input type="submit" value="View"/>
