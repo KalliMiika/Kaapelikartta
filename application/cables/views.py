@@ -140,13 +140,16 @@ def cables_edit_one(cable_id):
 @app.route("/cables/<cable_id>/delete/", methods=["POST"])
 @login_required(role="USER")
 def cables_delete(cable_id): 
-    log = Changelog(current_user.id, "Cable", "", cable_id, "Delete", Cable.query.get(cable_id).name, "")
-    db.session().add(log)
+    log = Changelog(current_user.id, "Cable", "", "", "Delete", Cable.query.get(cable_id).name, "")
 
     for t in Thread.query.filter_by(cable_id = cable_id):
-        Thread.query.filter_by(cable_id=cable_id).delete()
+        Changelog.deleteByTableAndId("Thread", t.id)
+    Thread.query.filter_by(cable_id=cable_id).delete()
+    db.session().commit()
     
-    Cable.query.filter_by(id=cable_id).delete()   
+    Changelog.deleteByTableAndId("Cable", cable_id)
+    Cable.query.filter_by(id=cable_id).delete()
+    db.session().add(log)   
     db.session().commit()
     
     return redirect(url_for("cables_index"))

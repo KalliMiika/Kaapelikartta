@@ -146,28 +146,37 @@ def controllers_create():
 @app.route("/controllers/<controller_id>/delete/", methods=["POST"])
 @login_required(role="USER")
 def controllers_delete(controller_id): 
-    log = Changelog(current_user.id, "Controller", "", controller_id, "Delete", Controller.query.get(controller_id).name, "")
-    db.session().add(log)
+    log = Changelog(current_user.id, "Controller", "", "", "Delete", Controller.query.get(controller_id).name, "")
 
     for c in Cable.query.filter_by(controller_a_id = controller_id):
-        log = Changelog(current_user.id, "Cable", "", c.id, "Delete", Cable.query.get(c.id).name, "")
-        db.session().add(log)
+        log2 = Changelog(current_user.id, "Cable", "", c.id, "Delete", Cable.query.get(c.id).name, "")
 
         for t in Thread.query.filter_by(cable_id = c.id):
-            Thread.query.filter_by(cable_id=c.id).delete()
+            Changelog.deleteByTableAndId("Thread", t.id)
+            db.session().commit()
 
-        Cable.query.filter_by(id=c.id).delete() 
+        Changelog.deleteByTableAndId("Cable", c.id)
+        Thread.query.filter_by(cable_id=c.id).delete()
+        Cable.query.filter_by(id=c.id).delete()
+        db.session().add(log2) 
+        db.session().commit()
 
     for c in Cable.query.filter_by(controller_b_id = controller_id):
-        log = Changelog(current_user.id, "Cable", "", c.id, "Delete", Cable.query.get(c.id).name, "")
-        db.session().add(log)
+        log2 = Changelog(current_user.id, "Cable", "", c.id, "Delete", Cable.query.get(c.id).name, "")
 
         for t in Thread.query.filter_by(cable_id = c.id):
-            Thread.query.filter_by(cable_id=c.id).delete()
+            Changelog.deleteByTableAndId("Thread", t.id)
+            db.session().commit()
             
-        Cable.query.filter_by(id=c.id).delete() 
+        Changelog.deleteByTableAndId("Cable", c.id)
+        Thread.query.filter_by(cable_id=c.id).delete()
+        Cable.query.filter_by(id=c.id).delete()
+        db.session().add(log2)
+        db.session().commit() 
 
-    Controller.query.filter_by(id=controller_id).delete()   
+    Changelog.deleteByTableAndId("Controller", controller_id)
+    Controller.query.filter_by(id=controller_id).delete()
+    db.session().add(log)   
     db.session().commit()
     
     return redirect(url_for("controllers_index"))

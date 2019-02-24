@@ -75,6 +75,13 @@ class Changelog(db.Model):
         res = db.engine.execute(stmt)
         return Changelog.parseRes(res)
 
+        
+    @staticmethod
+    def deleteByTableAndId(table, target_id):
+        stmt = text("DELETE FROM Changelog WHERE modified_table = "
+                    ":table AND modified_id = :id").params(table=table, id=target_id)
+        res = db.engine.execute(stmt)
+
     def parseRes(res):
         result = []
         for change in res:
