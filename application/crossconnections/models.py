@@ -1,4 +1,8 @@
 from application import db
+from sqlalchemy.sql import text
+from application.controllers.models import Controller
+from application.cables.models import Cable
+from application.threads.models import Thread
 
 #Risteyskojeen models.py
 class Crossconnection(db.Model):
@@ -25,3 +29,75 @@ class Crossconnection(db.Model):
         self.thread_b_id = thread_b_id
         self.device_a = device_a
         self.device_b = device_b
+
+    @staticmethod
+    def find_routes():
+        stmt = text("SELECT DISTINCT(Thread.data) FROM Thread, Crossconnection "
+                    "WHERE Crossconnection.thread_b_id = Thread.id AND "
+                    "Crossconnection.thread_a_id = 0")
+        res = db.engine.execute(stmt)
+        result = []
+        for row in res:
+            result.append({"name":row[0]})
+        return result
+
+    #Haetaan säikeiden data kenttien perusteella route hakusanaa
+    #vastaava reitti
+    @staticmethod
+    def get_route(route):
+        #Etsitään reitin alku, eli se ristikytkentä reitillä, joka alkaa
+        #Risteyskojeesta ilman että signaali saapuu risteyskojeeseen ensin.
+        stmt = text("SELECT Crossconnection.id, Crossconnection.thread_b_id FROM Crossconnection, Thread "
+                    "WHERE Thread.data = :route AND Crossconnection.thread_a_id = 0 AND Crossconnection.thread_b_id = Thread.id").params(route=route)
+        res = db.engine.execute(stmt)
+        current = res.first()
+        result = []
+        while True:
+            end = True
+            crossConnection = Crossconnection.query.get(current.id)
+            controller = Controller.query.get(crossConnection.controller_id)
+            cable = None
+            thread = Thread.query.get(current.thread_b_id)
+            socket_a = None
+            socket_b = None
+            if not thread is None:
+                end = False
+            if not end:
+                cable = Cable.query.get(thread.cable_id)
+                #Ristikytkennät eivät ota kantaa siihen miten päin kaapelit ovat,
+                #joten syncataan socketit oikein päin
+                if controller.id == cable.controller_a_id:
+                    socket_a = thread.socket_a
+                    socket_b = thread.socket_b
+                else:
+                    socket_b = thread.socket_a
+                    socket_a = thread.socket_b
+            #Otetaan nykyisen iteraation tulokset talteen
+            result.append({
+                "type":"Controller",
+                "name":controller.name
+            })
+            if not end:
+                result.append({
+                    "type":"Cable",
+                    "name":cable.name,
+                    "socket_a":thread.socket_a,
+                    "socket_b":thread.socket_b
+                })
+            if end:
+                return result
+            #Etsitään seuraava ristikytkentä seuraavaa iteraatiota varten
+            stmt = text("SELECT Crossconnection.id, Crossconnection.thread_b_id FROM Crossconnection, Thread WHERE "
+                        "Crossconnection.thread_a_id = :thread_id").params(thread_id=thread.id)
+            nxt = db.engine.execute(stmt)
+            hasnext = False
+            for cc in nxt:
+                current = nxt.first()
+                hasnext = True
+                break
+            if not hasnext:
+                break
+                
+        return result
+
+        

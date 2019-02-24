@@ -35,14 +35,18 @@ def controllers_view_one(controller_id):
     for cc in ccs:
         thread_a = None
         cable_a = None
-        if cc.thread_a_id != None:
+        data_a = None
+        thread_a = None
+        if cc.thread_a_id > 0:
             thread_a = Thread.query.get(cc.thread_a_id)
             cable_a = Cable.query.get(thread_a.cable_id).name
             data_a = Thread.query.get(cc.thread_a_id).data
             thread_a = Thread.query.get(cc.thread_a_id).socket_a
         thread_b = None
         cable_b = None
-        if cc.thread_a_id != None:
+        data_b = None
+        thread_b = None
+        if cc.thread_b_id > 0:
             thread_b = Thread.query.get(cc.thread_b_id)
             cable_b = Cable.query.get(thread_b.cable_id).name
             data_b = Thread.query.get(cc.thread_b_id).data

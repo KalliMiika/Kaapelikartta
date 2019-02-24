@@ -17,7 +17,7 @@ if os.environ.get("HEROKU"):
 else:
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///kaapelikartta.db"
     # Pyydetään SQLAlchemyä tulostamaan kaikki SQL-kyselyt
-    app.config["SQLALCHEMY_ECHO"] = True
+    #app.config["SQLALCHEMY_ECHO"] = True
 
 # Luodaan db-olio, jota käytetään tietokannan käsittelyyn
 db = SQLAlchemy(app)

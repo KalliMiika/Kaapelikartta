@@ -27,7 +27,7 @@ class CrossconnectionForm(FlaskForm):
 
     #Alustetaan SelectFieldien sisältö
     def setupChoices(self, controller_id):
-        choices = []
+        choices = [((0, ""))]
         for c in Cable.findThreadsByControllerId(controller_id):
             choices.append((c.thread_id, c.cable_name+"/"+str(c.thread_socket)))
         self.thread_a_id.choices = choices

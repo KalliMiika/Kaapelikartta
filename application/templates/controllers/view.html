@@ -19,7 +19,11 @@
     <tr>
         <td>{{ h.cable_a }}</td>
         <td>{{ h.thread_a }}</td>
+        {% if h.data_b is none or h.data_b == ''%}
+        <td>{{ h.data_a }}</td>
+        {% else %}
         <td>{{ h.data_b }}</td>
+        {% endif %}
         <td>{{ h.thread_b }}</td>
         <td>{{ h.cable_b }}</td>
     </tr>
