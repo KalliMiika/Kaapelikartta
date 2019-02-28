@@ -26,6 +26,18 @@
         {% endif %}
         <td>{{ h.thread_b }}</td>
         <td>{{ h.cable_b }}</td>
+        {% if current_user.is_authenticated %}
+        <td>
+          <form method="GET" action="{{ url_for('crossconnections_edit_one', crossconnection_id=h.id) }}">
+            <input type="submit" value="Edit"/>
+          </form>
+        </td>
+        <td>
+          <form method="POST" action="{{ url_for('crossconnections_delete', crossconnection_id=h.id) }}">
+            <input type="submit" value="X"/>
+          </form>
+        </td>
+        {% endif %}
     </tr>
     {% endfor %}
 </table>

@@ -52,6 +52,7 @@ def controllers_view_one(controller_id):
             data_b = Thread.query.get(cc.thread_b_id).data
             thread_b = Thread.query.get(cc.thread_b_id).socket_a
         ham.append({
+            "id":cc.id,
             "cable_a":cable_a, "cable_b":cable_b,
             "thread_a":thread_a, "thread_b":thread_b,
             "data_a":data_a, "data_b":data_b,

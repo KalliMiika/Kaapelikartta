@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<!--
+  Saa parametreiksi: 
+    crossconnections/forms.py:   CrossconnectionForm form
+    Crossconnections/models.py:  Crossconnection crossconnection
+-->
+<form method="POST" action="{{ url_for('crossconnections_edit_one', crossconnection_id=crossconnection.id) }}">
+  <table>
+    <tr>
+      <td>
+        {{ form.thread_a_id.label }}
+      </td>
+      <td>
+        {{ form.thread_a_id }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.thread_a_id.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.thread_b_id.label }}
+      </td>
+      <td>
+        {{ form.thread_b_id }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.thread_b_id.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.device_a.label }}
+      </td>
+      <td>
+        {{ form.device_a(value=crossconnection.device_a) }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.device_a.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.device_b.label }}
+      </td>
+      <td>
+        {{ form.device_b(value=crossconnection.device_b) }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.device_b.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Edit this crossconnection" />
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

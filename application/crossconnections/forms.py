@@ -16,7 +16,7 @@ class CrossconnectionForm(FlaskForm):
     #Risteyskojeen laite b josta säie 'B' alkaa
     device_b = StringField('Device B', [validators.optional()])
 
-    def validate2(self, edit):
+    def validate2(self):
         #Tarkistetaan että kaapeli on molemmista päistä kiinni
         #eri risteyskojeessa 
         if self.thread_a_id.data == self.thread_b_id.data:
