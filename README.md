@@ -144,11 +144,12 @@
 
 <dl>
 	<dt>Tietokanta</dt>
-</dl>
+</dl>	
 
 * [Tietorakenteet sanallisesti](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/Tietokanta.md)
 * [Tietokantakaavio](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Tietokantakaavio.jpg)
 * [Tietokantakaavio ilman muutoslogia](https://raw.githubusercontent.com/KalliMiika/Kaapelikartta/master/documentation/Tietokantakaavio2.jpg)
+* [Create Table -Lauseet](https://github.com/KalliMiika/Kaapelikartta/blob/master/documentation/CreateTableLauseet.txt)
 
 <dl>
 	<dt>User Stories</dt>
