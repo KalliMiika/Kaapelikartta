@@ -1,0 +1,68 @@
+
+CREATE TABLE controller (
+        id INTEGER NOT NULL,
+        name VARCHAR(144) NOT NULL,
+        note VARCHAR(144) NOT NULL,
+        x INTEGER NOT NULL,
+        y INTEGER NOT NULL,
+        PRIMARY KEY (id)
+);
+CREATE TABLE account (
+        id INTEGER NOT NULL,
+        date_created DATETIME,
+        date_modified DATETIME,
+        name VARCHAR(144) NOT NULL,
+        username VARCHAR(144) NOT NULL,
+        password VARCHAR(144) NOT NULL,
+        role VARCHAR(144) NOT NULL,
+        PRIMARY KEY (id)
+);
+CREATE TABLE changelog (
+        id INTEGER NOT NULL,
+        date_created DATETIME,
+        date_modified DATETIME,
+        account_id INTEGER NOT NULL,
+        modified_table VARCHAR(144) NOT NULL,
+        modified_column VARCHAR(144) NOT NULL,
+        modified_id INTEGER NOT NULL,
+        action VARCHAR(144) NOT NULL,
+        old_value VARCHAR(144) NOT NULL,
+        new_value VARCHAR(144) NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY(account_id) REFERENCES account (id)
+);
+CREATE TABLE cable (
+        id INTEGER NOT NULL,
+        controller_a_id INTEGER NOT NULL,
+        controller_b_id INTEGER NOT NULL,
+        size VARCHAR(144) NOT NULL,
+        name VARCHAR(144) NOT NULL,
+        note VARCHAR(144) NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY(controller_a_id) REFERENCES controller (id),
+        FOREIGN KEY(controller_b_id) REFERENCES controller (id)
+);
+CREATE TABLE thread (
+        id INTEGER NOT NULL,
+        cable_id INTEGER NOT NULL,
+        number_a INTEGER NOT NULL,
+        number_b INTEGER NOT NULL,
+        socket_a INTEGER NOT NULL,
+        socket_b INTEGER NOT NULL,
+        data VARCHAR(144) NOT NULL,
+        note VARCHAR(144) NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY(cable_id) REFERENCES cable (id)
+);
+CREATE TABLE crossconnection (
+        id INTEGER NOT NULL,
+        controller_id INTEGER NOT NULL,
+        thread_a_id INTEGER NOT NULL,
+        thread_b_id INTEGER NOT NULL,
+        device_a VARCHAR(144) NOT NULL,
+        device_b VARCHAR(144) NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY(controller_id) REFERENCES controller (id),
+        FOREIGN KEY(thread_a_id) REFERENCES thread (id),
+        FOREIGN KEY(thread_b_id) REFERENCES thread (id)
+);
